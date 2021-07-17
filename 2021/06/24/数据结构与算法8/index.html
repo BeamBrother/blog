@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<script>
+(function(){
+    if(''){
+        if (prompt('请输入文章密码') !== ''){
+            alert('密码错误！');
+            history.back();
+        }
+    }
+})();
+</script>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/logo.png">
+  <meta name="baidu-site-verification" content="uxl9lr0nrm">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;www.shuibao.ml&quot;,&quot;root&quot;:&quot;&#x2F;blog&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;blog&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;blog&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="一、二叉树的定义 二叉树（binary tree）是一个有限的节点集合，这个集合或者为空，或者由一个根节点和两棵互不相交的称为左子树（left subtree）和右子树（right subtree）的二叉树组成。  二、二叉树遍历的定义 二叉树的遍历是指按一定次序访问二叉树中的每个节点，且每个节点仅被访问一次。 在二叉树的遍历过程中不要将整棵树看成是由多个节点组成，而要看成是由根、左子树、右子树组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法8">
+<meta property="og:url" content="http://www.shuibao.ml/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%958/index.html">
+<meta property="og:site_name" content="ligai">
+<meta property="og:description" content="一、二叉树的定义 二叉树（binary tree）是一个有限的节点集合，这个集合或者为空，或者由一个根节点和两棵互不相交的称为左子树（left subtree）和右子树（right subtree）的二叉树组成。  二、二叉树遍历的定义 二叉树的遍历是指按一定次序访问二叉树中的每个节点，且每个节点仅被访问一次。 在二叉树的遍历过程中不要将整棵树看成是由多个节点组成，而要看成是由根、左子树、右子树组">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421164702298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-06-24T15:40:36.000Z">
+<meta property="article:modified_time" content="2021-07-17T09:57:11.077Z">
+<meta property="article:author" content="baoliang">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210421164702298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70">
+
+
+<link rel="canonical" href="http://www.shuibao.ml/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%958/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;www.shuibao.ml&#x2F;blog&#x2F;2021&#x2F;06&#x2F;24&#x2F;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%958&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;24&#x2F;数据结构与算法8&#x2F;&quot;,&quot;title&quot;:&quot;数据结构与算法8&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>数据结构与算法8 | ligai</title><script src="/blog/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/blog/atom.xml" title="ligai" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ligai</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/blog/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section">归档</a></li>
+        <li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section">分类</a></li>
+        <li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section">标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">一、二叉树的定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">二、二叉树遍历的定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">三、二叉树遍历的方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">四、二叉树的基本操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-text">五、二叉树的构造</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%AE%9E%E9%AA%8C"><span class="nav-text">六、实验</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="baoliang"
+      src="/blog/images/header.jpg">
+  <p class="site-author-name" itemprop="name">baoliang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/BeamBrother" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;BeamBrother" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com.hk/" title="Google → https:&#x2F;&#x2F;www.google.com.hk&#x2F;" rel="noopener" target="_blank">Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.baidu.com/" title="百度 → https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45858458?spm=1018.2226.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45858458?spm&#x3D;1018.2226.3001.5343" rel="noopener" target="_blank">CSDN</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.shuibao.ml/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%958/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/header.jpg">
+      <meta itemprop="name" content="baoliang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ligai">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构与算法8
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-24 23:40:36" itemprop="dateCreated datePublished" datetime="2021-06-24T23:40:36+08:00">2021-06-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-07-17 17:57:11" itemprop="dateModified" datetime="2021-07-17T17:57:11+08:00">2021-07-17</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h5 id="一、二叉树的定义"><a href="#一、二叉树的定义" class="headerlink" title="一、二叉树的定义"></a>一、二叉树的定义</h5><blockquote>
+<p>二叉树（binary tree）是一个有限的节点集合，这个集合或者为空，或者由一个根节点和两棵互不相交的称为左子树（left subtree）和右子树（right subtree）的二叉树组成。</p>
+</blockquote>
+<h5 id="二、二叉树遍历的定义"><a href="#二、二叉树遍历的定义" class="headerlink" title="二、二叉树遍历的定义"></a>二、二叉树遍历的定义</h5><ol>
+<li>二叉树的遍历是指按一定次序访问二叉树中的每个节点，且每个节点仅被访问一次。</li>
+<li>在二叉树的遍历过程中不要将整棵树看成是由多个节点组成，而要看成是由根、左子树、右子树组成。</li>
+</ol>
+<h5 id="三、二叉树遍历的方法"><a href="#三、二叉树遍历的方法" class="headerlink" title="三、二叉树遍历的方法"></a>三、二叉树遍历的方法</h5><ol>
+<li>前序遍历（根 -&gt; 左子树 -&gt; 右子树）</li>
+<li>中序遍历（左子树 -&gt; 根 -&gt; 右子树）</li>
+<li>后序遍历（左子树 -&gt; 右子树 -&gt; 根）</li>
+<li>按层遍历：对二叉树按照从上至下，每层按照从左到右的顺序进行遍历。</li>
+</ol>
+<h5 id="四、二叉树的基本操作"><a href="#四、二叉树的基本操作" class="headerlink" title="四、二叉树的基本操作"></a>四、二叉树的基本操作</h5><ol>
+<li>创建一棵二叉树</li>
+<li>查找二叉树中的某个值的节点</li>
+<li>找二叉树中的孩子节点</li>
+<li>求二叉树的高度</li>
+<li>输出二叉树</li>
+<li>统计二叉树中节点总数</li>
+</ol>
+<h5 id="五、二叉树的构造"><a href="#五、二叉树的构造" class="headerlink" title="五、二叉树的构造"></a>五、二叉树的构造</h5><ol>
+<li>同一棵二叉树具有唯一先序序列、中序序列、后序序列</li>
+<li>任何 n（n &gt;=0）个不同节点的二叉树，都可由它的中序序列和先序序列唯一地确定</li>
+<li>任何 n（n&gt;=0）个不同节点的二叉树，都可由它的中序序列和后序序列唯一地确定</li>
+</ol>
+<h5 id="六、实验"><a href="#六、实验" class="headerlink" title="六、实验"></a>六、实验</h5><p>现有头文件BiTree.h</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> ElemType;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">	ElemType data; <span class="comment">//数据域</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">left</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">right</span>;</span> <span class="comment">//结点的左右子树指针</span></span><br><span class="line">&#125; BTNode; <span class="comment">//二叉树结点类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化空二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitBTree</span><span class="params">(BTNode*&amp; root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//按照前序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateBTree_Pre</span><span class="params">(BTNode*&amp; root, ElemType Array[])</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//前序遍历二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算二叉树深度</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BTreeDepth</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放二叉树中所有结点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ClearBTree</span><span class="params">(BTNode*&amp; root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//按照中序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InOrder</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//按照后序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PostOrder</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//统计二叉树中结点总数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BTreeCount</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查找二叉树中值为item的结点</span></span><br><span class="line"><span class="function">BTNode* <span class="title">FindBTree</span><span class="params">(BTNode* root, ElemType item)</span></span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>接口实现源文件BiTree.cpp</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;BiTree.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化空二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitBTree</span><span class="params">(BTNode*&amp; root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	root = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算二叉树深度</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BTreeDepth</span><span class="params">(BTNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> CALL = <span class="number">0</span>; <span class="comment">//记录调用次数</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> RETURN = <span class="number">0</span>; <span class="comment">//记录返回次数</span></span><br><span class="line"></span><br><span class="line">	CALL++; <span class="comment">//调用次数加一</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (root == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		RETURN++; <span class="comment">//返回次数加一</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">int</span> depl = BTreeDepth(root-&gt;left);</span><br><span class="line">		<span class="keyword">int</span> depr = BTreeDepth(root-&gt;right);</span><br><span class="line">		<span class="keyword">if</span> (depl &gt; depr) &#123;</span><br><span class="line">			RETURN++; <span class="comment">//返回次数加一</span></span><br><span class="line">			<span class="keyword">return</span> depl + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			RETURN++; <span class="comment">//返回次数加一</span></span><br><span class="line">			<span class="keyword">return</span> depr + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放二叉树中所有结点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ClearBTree</span><span class="params">(BTNode*&amp; root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		ClearBTree(root-&gt;left);</span><br><span class="line">		ClearBTree(root-&gt;right);</span><br><span class="line">		<span class="keyword">delete</span> root;</span><br><span class="line">		root = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>源文件content.cpp</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;BiTree.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	BTNode* root;</span><br><span class="line">	ElemType A[] = <span class="string">&quot;ABD##E##CF#G###&quot;</span>; <span class="comment">//以&quot;#&quot;补全空分支后的前序遍历序列</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	InitBTree(root); <span class="comment">//初始化空二叉树</span></span><br><span class="line">	CreateBTree_Pre(root, A); <span class="comment">//以前序遍历序列建立二叉树</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;前序遍历序列：&quot;</span>;</span><br><span class="line">	PreOrder(root); <span class="comment">//输出前序遍历序列</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//cout &lt;&lt; &quot;中序遍历序列：&quot;;</span></span><br><span class="line">	<span class="comment">//InOrder(root); //输出中序遍历序列</span></span><br><span class="line">	<span class="comment">//cout &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//cout &lt;&lt; &quot;后序遍历序列：&quot;;</span></span><br><span class="line">	<span class="comment">//PostOrder(root); //输出后序遍历序列</span></span><br><span class="line">	<span class="comment">//cout &lt;&lt; endl;</span></span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;深度：&quot;</span> &lt;&lt; BTreeDepth(root) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//计算二叉树深度</span></span><br><span class="line"></span><br><span class="line">	ClearBTree(root);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20210421164702298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如上图所示：<br>1)写出前序、中序和后序遍历序列<br>    前序：ABDECFG<br>    中序：DBEAFGC<br>    后序：DEBGFCA</p>
+<p>2)分别写出单分支结点和叶子结点<br>    单分支：C、F<br>    叶子：D、E、G</p>
+<p>3)以(#号)补全单分支结点和叶子结点的空分支</p>
+<p>4)写出补全空分支(#号)后二叉树的前序遍历序列</p>
+<pre><code>    ABD##E##CF#G###
+</code></pre>
+<p>5)在BiTree项目的main()函数中，将第4)小题的带#号的前序遍历序列作为数组A[ ]的值，并执行程序，以理解CreateBTree_Pre( )函数的递归建树的过程。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//按照前序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateBTree_Pre</span><span class="params">(BTNode*&amp; root, ElemType Array[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>; <span class="comment">//静态变量count</span></span><br><span class="line">	<span class="keyword">char</span> item = Array[count]; <span class="comment">//读取Array[]数组中的第count个元素</span></span><br><span class="line">	count++;</span><br><span class="line">	<span class="keyword">if</span> (item == <span class="string">&#x27;#&#x27;</span>) &#123; <span class="comment">//如果读入#字符，创建空树</span></span><br><span class="line">		root = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		root = <span class="keyword">new</span> BTNode; <span class="comment">//建根结点</span></span><br><span class="line">		root-&gt;data = item;</span><br><span class="line">		CreateBTree_Pre(root-&gt;left, Array); <span class="comment">//建左子树</span></span><br><span class="line">		CreateBTree_Pre(root-&gt;right, Array); <span class="comment">//建右子树</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>6)在BiTree项目中添加二叉树的前序、中序、后序遍历接口，并在主函数中进行验证。<br>前序遍历：PreOrder(BTNode* root)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//前序遍历二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(BTNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; root-&gt;data; <span class="comment">//访问根</span></span><br><span class="line">		PreOrder(root-&gt;left); <span class="comment">//前序遍历左子树</span></span><br><span class="line">		PreOrder(root-&gt;right); <span class="comment">//前序遍历右子树</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>中序遍历：void InOrder (BTNode *root)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//按照中序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InOrder</span><span class="params">(BTNode* root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		InOrder(root-&gt;left);</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; root-&gt;data;</span><br><span class="line">		InOrder(root-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>后序遍历：void PostOrder (BTNode *root)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//按照后序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PostOrder</span><span class="params">(BTNode* root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		PostOrder(root-&gt;left);</span><br><span class="line">		PostOrder(root-&gt;right);</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; root-&gt;data;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>7）关于二叉树遍历的另外两个应用：<br>A）统计二叉树中结点总数<br>     int BTreeCount(BTNode* root)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//统计二叉树中结点总数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BTreeCount</span><span class="params">(BTNode* root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//空树的结点数为0</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> BTreeCount(root-&gt;left) +</span><br><span class="line">		BTreeCount(root-&gt;right) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>B）查找二叉树中值为item的结点<br>    BTNode* FindBTree(BTNode* root, ElemType item)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查找二叉树中值为item的结点</span></span><br><span class="line"><span class="function">BTNode* <span class="title">FindBTree</span><span class="params">(BTNode* root, ElemType item)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root == <span class="literal">NULL</span>)  <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (root-&gt;data == item)  <span class="keyword">return</span> root;</span><br><span class="line">	BTNode* p = FindBTree(root-&gt;left, item);</span><br><span class="line">	<span class="keyword">if</span> (p != <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> p;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> FindBTree(root-&gt;right, item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>二叉树进阶：</strong><a href="https://www.shuibao.ml/blog/2021/05/12/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%8D%E8%BD%AC/">二叉树反转</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/blog/atom.xml">
+          <span class="icon">
+            <i class=""></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%951/" rel="prev" title="数据结构与算法1">
+                  <i class="fa fa-chevron-left"></i> 数据结构与算法1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2021/06/24/JUnit%E4%B9%8BEclEmma%E8%A6%86%E7%9B%96%E7%8E%87%E5%B7%A5%E5%85%B7%EF%BC%88eclipse%EF%BC%89/" rel="next" title="JUnit之EclEmma覆盖率工具（eclipse）">
+                  JUnit之EclEmma覆盖率工具（eclipse） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/blog/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baoliang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+<script src="/blog/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

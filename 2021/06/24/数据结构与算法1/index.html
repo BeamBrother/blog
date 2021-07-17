@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<script>
+(function(){
+    if(''){
+        if (prompt('请输入文章密码') !== ''){
+            alert('密码错误！');
+            history.back();
+        }
+    }
+})();
+</script>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/logo.png">
+  <meta name="baidu-site-verification" content="uxl9lr0nrm">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;www.shuibao.ml&quot;,&quot;root&quot;:&quot;&#x2F;blog&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;blog&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;blog&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="基本知识：抽象数据类型 数据元素集合以及定义在该集合上的一组操作，简称为ADT（Abstract Data Type）。“抽象”指与具体实现无关，仅考虑能做什么，而不考虑如何做。形式描述：ADT &#x3D; ( D，R，P )其中：D 是数据对象，R 是 D 上的关系集，P 是 D 的基本操作集。  抽象数据类型的重要特征 1.数据抽象用ADT描述程序处理的实体时，强调的是其本质的特征、其所能完成的功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法1">
+<meta property="og:url" content="http://www.shuibao.ml/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%951/index.html">
+<meta property="og:site_name" content="ligai">
+<meta property="og:description" content="基本知识：抽象数据类型 数据元素集合以及定义在该集合上的一组操作，简称为ADT（Abstract Data Type）。“抽象”指与具体实现无关，仅考虑能做什么，而不考虑如何做。形式描述：ADT &#x3D; ( D，R，P )其中：D 是数据对象，R 是 D 上的关系集，P 是 D 的基本操作集。  抽象数据类型的重要特征 1.数据抽象用ADT描述程序处理的实体时，强调的是其本质的特征、其所能完成的功能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210508142351179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210508145523700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210508145415826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210508145538306.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-06-24T15:38:51.000Z">
+<meta property="article:modified_time" content="2021-07-17T09:57:09.795Z">
+<meta property="article:author" content="baoliang">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210508142351179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70">
+
+
+<link rel="canonical" href="http://www.shuibao.ml/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%951/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;www.shuibao.ml&#x2F;blog&#x2F;2021&#x2F;06&#x2F;24&#x2F;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%951&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;24&#x2F;数据结构与算法1&#x2F;&quot;,&quot;title&quot;:&quot;数据结构与算法1&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>数据结构与算法1 | ligai</title><script src="/blog/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/blog/atom.xml" title="ligai" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ligai</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/blog/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section">归档</a></li>
+        <li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section">分类</a></li>
+        <li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section">标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="nav-text">基本知识：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">抽象数据类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%87%8D%E8%A6%81%E7%89%B9%E5%BE%81"><span class="nav-text">抽象数据类型的重要特征</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-text">算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E9%A2%91%E5%BA%A6"><span class="nav-text">算法频度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%88%E6%B8%90%E8%BF%9B%EF%BC%89%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-text">（渐进）时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">基本操作</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="baoliang"
+      src="/blog/images/header.jpg">
+  <p class="site-author-name" itemprop="name">baoliang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/BeamBrother" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;BeamBrother" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com.hk/" title="Google → https:&#x2F;&#x2F;www.google.com.hk&#x2F;" rel="noopener" target="_blank">Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.baidu.com/" title="百度 → https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45858458?spm=1018.2226.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45858458?spm&#x3D;1018.2226.3001.5343" rel="noopener" target="_blank">CSDN</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.shuibao.ml/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%951/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/header.jpg">
+      <meta itemprop="name" content="baoliang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ligai">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构与算法1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-24 23:38:51" itemprop="dateCreated datePublished" datetime="2021-06-24T23:38:51+08:00">2021-06-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-07-17 17:57:09" itemprop="dateModified" datetime="2021-07-17T17:57:09+08:00">2021-07-17</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="基本知识："><a href="#基本知识：" class="headerlink" title="基本知识："></a>基本知识：</h4><h5 id="抽象数据类型"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h5><blockquote>
+<p>数据元素集合以及定义在该集合上的一组操作，简称为ADT（Abstract Data Type）。<br>“抽象”指与具体实现无关，仅考虑能做什么，而不考虑如何做。<br>形式描述：<br>ADT = ( D，R，P )其中：D 是数据对象，R 是 D 上的关系集，P 是 D 的基本操作集。</p>
+</blockquote>
+<h5 id="抽象数据类型的重要特征"><a href="#抽象数据类型的重要特征" class="headerlink" title="抽象数据类型的重要特征"></a>抽象数据类型的重要特征</h5><blockquote>
+<p>1.数据抽象<br>用ADT描述程序处理的实体时，强调的是其本质的特征、其所能完成的功能以及它和外部用户的接口（即外界使用它的方法）。<br>2.数据封装<br>将实体的外部特性和其内部实现细节分离，并且对外部用户隐藏其内部实现细节。<br>3.抽象数据类型的实现<br>面向对象——类（class），如C++、Java语言<br>面向过程——结构体（struct），如C语言</p>
+</blockquote>
+<h5 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h5><blockquote>
+<p>程序＝数据结构＋算法<br>算法就是求解问题的一系列步骤的集合。<br>通常把具体存储结构上的操作实现步骤或过程称为算法。</p>
+</blockquote>
+<ul>
+<li><p><strong>算法的特性</strong></p>
+<blockquote>
+<ol>
+<li>有穷性： 对于任意一组合法的输入值，在执行有穷步骤之后一定能结束。</li>
+<li>确定性：每条指令必须有确切的含义，不能有二义性。</li>
+<li>可行性：算法中描述的操作都是用已经实现的基本运算组成。</li>
+<li>输入：可以有零个或多个输入。</li>
+<li>输出：一组与”输入”有确定关系的量值。有一个或多个输出。</li>
+</ol>
+</blockquote>
+</li>
+<li><p><strong>算法的评价（设计准则）</strong></p>
+<blockquote>
+<ol>
+<li>正确性：能正确执行预定的功能。</li>
+<li>可使用性：方便使用，用户友好性。</li>
+<li>可读性：易于理解，逻辑清晰。</li>
+<li>健壮性：具有很好的容错性。能提供异常处理，不容易出现崩溃。</li>
+<li>高效性：执行时间短（时间效率）、占用存储空间少（空间效率）。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h5 id="算法频度"><a href="#算法频度" class="headerlink" title="算法频度"></a>算法频度</h5><blockquote>
+<p>一般用算法中<strong>语句被执行的次数</strong>（频度）来表示算法的<strong>时间效率</strong>。 </p>
+</blockquote>
+<p>分析下面程序段的频度：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i, sum = <span class="number">0</span>;				（<span class="number">1</span>次）</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)		（n+<span class="number">1</span>次）</span><br><span class="line">  sum = sum + i;			（n次）</span><br><span class="line"><span class="keyword">return</span> sum;					（<span class="number">1</span>次）</span><br></pre></td></tr></table></figure>
+<p>T(n)=2n+3，且T(n)是n数量级的。</p>
+<h5 id="（渐进）时间复杂度"><a href="#（渐进）时间复杂度" class="headerlink" title="（渐进）时间复杂度"></a>（渐进）时间复杂度</h5><blockquote>
+<p>忽略次要语句的执行次数，只对重要的语句（原操作）和执行最频繁的语句进行计数，同时对计算结果只取其<strong>最高次幂</strong>，且<strong>略去系数</strong>不写。<br>渐近时间复杂度常简称为时间复杂度，用大O表示。<br>               T(n)=2n+3=O(n)<br>既可简化T(n)的计算，又能比较客观地反映出<strong>当n很大时，算法的时间性能</strong>。<br>例如：T(n)=3n2-5n+10000=O(n2)</p>
+</blockquote>
+<h6 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h6><p>1、观察结构体类型的定义形式、结构体成员的访问方式和结构体变量在内存中的数据组织形式，请记住<strong>结构体类型变量的数据域的连续排列方式</strong>。注意掌握用<strong>typedef关键字为已定义的合法类型名增加新名称</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">StructTest</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> t1;</span><br><span class="line">    <span class="keyword">int</span> t2;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//typedef StructTest TEST;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">	StructTest my_Var;</span><br><span class="line">	<span class="comment">//TEST my_Var;</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;&amp;my_Var&lt;&lt;<span class="string">&quot;  &quot;</span>&lt;&lt;&amp;my_Var.t1&lt;&lt;<span class="string">&quot;  &quot;</span>&lt;&lt;&amp;my_Var.t2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210508142351179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2、运行下列程序，比较<strong>值传递、指针传递、引用传递</strong>*三种函数参数的传递方法。用F9设置断点①至⑥，用F5调试程序并在Watch监视窗口中观察下列表格中变量的值。结合断点位置变量的相关数据，分析哪个函数可以交换实参的值，并总结用指针和引用作为函数参数的设计步骤。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap1</span><span class="params">(<span class="keyword">int</span> x,  <span class="keyword">int</span> y)</span></span>;<span class="comment">//值传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap2</span><span class="params">(<span class="keyword">int</span> *px,  <span class="keyword">int</span> *py)</span></span>;<span class="comment">//指针传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap3</span><span class="params">(<span class="keyword">int</span> &amp;x,  <span class="keyword">int</span> &amp;y)</span></span>;<span class="comment">//引用传递</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">1</span>, b=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> *pa=&amp;a, *pb=&amp;b;  <span class="comment">//将地址赋值给指针</span></span><br><span class="line"></span><br><span class="line">	swap1(a,b); <span class="comment">//断点①</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;After calling swap1:a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;, b=&quot;</span>&lt;&lt;b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	a=<span class="number">1</span>,b=<span class="number">2</span>;</span><br><span class="line">	swap2(pa,pb); <span class="comment">//断点③</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;After calling swap2:a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;, b=&quot;</span>&lt;&lt;b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	a=<span class="number">1</span>,b=<span class="number">2</span>;</span><br><span class="line">	swap3(a,b); <span class="comment">//断点⑤ </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;After calling swap3:a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;, b=&quot;</span>&lt;&lt;b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//值传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap1</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t; </span><br><span class="line">	t=x;  x=y;  y=t; <span class="comment">//断点②</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//指针传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap2</span><span class="params">(<span class="keyword">int</span> *px, <span class="keyword">int</span> *py)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t; </span><br><span class="line">	t=*px;  *px=*py;  *py=t; <span class="comment">//断点④</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//引用传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap3</span><span class="params">(<span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t; </span><br><span class="line">	t=x;  x=y;  y=t; <span class="comment">//断点⑥</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>值传递<br><img src="https://img-blog.csdnimg.cn/20210508145523700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>指针传递<br><img src="https://img-blog.csdnimg.cn/20210508145415826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>引用传递<br><img src="https://img-blog.csdnimg.cn/20210508145538306.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3、在以下矩形抽象数据类型的基础上设计矩形的周长和面积的操作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rect</span> &#123;</span></span><br><span class="line">	<span class="keyword">double</span> length;</span><br><span class="line">	<span class="keyword">double</span> width;</span><br><span class="line">&#125;;<span class="comment">//声明矩形（矩形的类型定义）</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitRect</span><span class="params">(Rect&amp; R, <span class="keyword">double</span> l, <span class="keyword">double</span> w)</span></span>;<span class="comment">//构造矩形</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Circumference</span><span class="params">(Rect&amp; R)</span></span>;<span class="comment">//求矩形周长</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">AreaR</span><span class="params">(Rect&amp; R)</span></span>;<span class="comment">//求矩形面积</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Rect my_rect;<span class="comment">//定义矩形变量my_rect</span></span><br><span class="line">	<span class="keyword">double</span> Length, Width, Circ, Area;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Input length,width:&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; Length &gt;&gt; Width;</span><br><span class="line">	InitRect(my_rect, Length, Width);<span class="comment">//构造矩形my_rect</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//此处写程序</span></span><br><span class="line">	Circ = Circumference(my_rect);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;周长：&quot;</span> &lt;&lt; Circ &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	Area = AreaR(my_rect);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;面积：&quot;</span> &lt;&lt; Area &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//初始化矩形</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitRect</span><span class="params">(Rect&amp; R, <span class="keyword">double</span> l, <span class="keyword">double</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	R.length = l;</span><br><span class="line">	R.width = w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求矩形周长</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Circumference</span><span class="params">(Rect&amp; R)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//此处写程序</span></span><br><span class="line">	<span class="keyword">return</span> R.length + R.width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求矩形面积</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">AreaR</span><span class="params">(Rect&amp; R)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//此处写程序</span></span><br><span class="line">	<span class="keyword">return</span> R.length * R.width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/blog/atom.xml">
+          <span class="icon">
+            <i class=""></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2021/05/12/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%8D%E8%BD%AC/" rel="prev" title="二叉树反转">
+                  <i class="fa fa-chevron-left"></i> 二叉树反转
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%958/" rel="next" title="数据结构与算法8">
+                  数据结构与算法8 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/blog/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baoliang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+<script src="/blog/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

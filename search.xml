@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>IDEA 2020.2 无法创建web项目（创建web项目、Spring MVC等等步骤）</title>
+    <url>/blog/2021/06/24/IDEA-2020-2-%E6%97%A0%E6%B3%95%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<h1 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h1><p><strong>按往常一样创建Java项目</strong><br><img src="https://img-blog.csdnimg.cn/20200806235340851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="按往常一样创建Java项目"><br><strong>一直默认，项目名称可自己修改，点击finish，Java项目完成创建</strong><br><img src="https://img-blog.csdnimg.cn/20200806235521617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="完成创建"><br><strong>完成后，向项目单击右键</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20200807000019118.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>在里面就可以找到web项目，还有spring等等，点击ok即可完成</strong><br><img src="https://img-blog.csdnimg.cn/20200807000359933.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200807000445988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210119214716851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+]]></content>
+      <tags>
+        <tag>JavaSE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Maven中央仓库下载包太慢？实施阿里云吧！修改本地仓库的位置，极其简单</title>
+    <url>/blog/2021/06/24/Maven%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93%E4%B8%8B%E8%BD%BD%E5%8C%85%E5%A4%AA%E6%85%A2%EF%BC%9F%E5%AE%9E%E6%96%BD%E9%98%BF%E9%87%8C%E4%BA%91%E5%90%A7%EF%BC%81%E4%BF%AE%E6%94%B9%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%8C%E6%9E%81%E5%85%B6%E7%AE%80%E5%8D%95/</url>
+    <content><![CDATA[<h4 id="Maven对应的版本与jdk设置"><a href="#Maven对应的版本与jdk设置" class="headerlink" title="Maven对应的版本与jdk设置"></a>Maven对应的版本与jdk设置</h4><p>可以去官网找到相对应的版本<br><strong>如下</strong><br><img src="https://img-blog.csdnimg.cn/202011230901033.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>找到相对应的版本后再对Maven的配置文件进行配置<br>找到<strong>根目录下的config/settings.xml</strong><br><img src="https://img-blog.csdnimg.cn/20201123090417198.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>打开找到&lt;profiles&gt;下的配置jdk的配置<br><img src="https://img-blog.csdnimg.cn/20201123090626828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这里的版本默认的是<strong>jdk1.4</strong>，所以，我们要自己配置；我这里以1.8为例</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;id&gt;jdk-1.8&lt;/id&gt;</span><br><span class="line"></span><br><span class="line">    &lt;activation&gt;</span><br><span class="line">&lt;activeByDefault&gt;true&lt;/activeByDefault&gt; </span><br><span class="line">      &lt;jdk&gt;1.8&lt;/jdk&gt;</span><br><span class="line">    &lt;/activation&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;properties&gt;</span><br><span class="line">       &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">       &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;  </span><br><span class="line">       &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;   </span><br><span class="line">   &lt;/properties&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;repositories&gt;</span><br><span class="line">      &lt;repository&gt;</span><br><span class="line">        &lt;id&gt;jdk1.8&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;Repository for JDK 1.8 builds&lt;/name&gt;</span><br><span class="line">        &lt;url&gt;http://www.myhost.com/maven/jdk1.8&lt;/url&gt;</span><br><span class="line">        &lt;layout&gt;default&lt;/layout&gt;</span><br><span class="line">      &lt;/repository&gt;</span><br><span class="line">    &lt;/repositories&gt;</span><br><span class="line">  &lt;/profile&gt;</span><br></pre></td></tr></table></figure>
+<p>将其配置好就可以愉快的运行啦</p>
+<h4 id="中央仓库下载包太慢？"><a href="#中央仓库下载包太慢？" class="headerlink" title="中央仓库下载包太慢？"></a>中央仓库下载包太慢？</h4><p><strong>找到根目录下的config/settings.xml</strong><br><img src="https://img-blog.csdnimg.cn/20201123091740555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>找到settings标签<br>随后进行修改，配置阿里云</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span><br><span class="line">          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">          xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>本地仓库</strong><br>maven默认的是C:\Users\你的本机用户名.m2\repository<br><img src="https://img-blog.csdnimg.cn/20201123092208541.png#pic_center" alt="在这里插入图片描述"><br>不想放到c盘的童鞋可以参照下面方法，极其简单<br>也就再localRepository下面添加一个</p>
+<p><code>&lt;localRepository&gt;你想要的盘/路径/自己想命名的本地仓库文件夹名称&lt;/localRepository&gt;</code></p>
+<p>配置完了就可以愉快的玩耍啦</p>
+]]></content>
+      <tags>
+        <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉树反转</title>
+    <url>/blog/2021/05/12/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%8D%E8%BD%AC/</url>
+    <content><![CDATA[<blockquote>
+<p>二叉树反转常被拿来做面试题，所以掌握它是一件必须的事。<br>下图是二叉树的反转，看起来就像是镜像一样。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20210421231024248.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>首先我们先要构建二叉树的类型</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> ElemType;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">	ElemType data; <span class="comment">//数据域</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">left</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">right</span>;</span> <span class="comment">//结点的左右子树指针</span></span><br><span class="line">&#125; BTNode; <span class="comment">//二叉树结点类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化空二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitBTree</span><span class="params">(BTNode*&amp; root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//按照前序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateBTree_Pre</span><span class="params">(BTNode*&amp; root, ElemType Array[])</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//按照中序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InOrder</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实现二叉树的反转函数</span></span><br><span class="line"><span class="function">BTNode* <span class="title">InvertBiTree</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>实现基本的功能</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;BiTree.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化空二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitBTree</span><span class="params">(BTNode*&amp; root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    root = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//按照前序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateBTree_Pre</span><span class="params">(BTNode*&amp; root, ElemType Array[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>; <span class="comment">//静态变量count</span></span><br><span class="line">    <span class="keyword">char</span> item = Array[count]; <span class="comment">//读取Array[]数组中的第count个元素</span></span><br><span class="line">    count++;</span><br><span class="line">    <span class="keyword">if</span> (item == <span class="string">&#x27;#&#x27;</span>) &#123; <span class="comment">//如果读入#字符，创建空树</span></span><br><span class="line">        root = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        root = <span class="keyword">new</span> BTNode; <span class="comment">//建根结点</span></span><br><span class="line">        root-&gt;data = item;</span><br><span class="line">        CreateBTree_Pre(root-&gt;left, Array); <span class="comment">//建左子树</span></span><br><span class="line">        CreateBTree_Pre(root-&gt;right, Array); <span class="comment">//建右子树</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//按照中序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InOrder</span><span class="params">(BTNode* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root !=  <span class="literal">NULL</span>) &#123;</span><br><span class="line">        InOrder(root-&gt;left);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; root-&gt;data;</span><br><span class="line">        InOrder(root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>利用递归</strong>将二叉树反转</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//实现二叉树的反转函数</span></span><br><span class="line"><span class="function">BTNode* <span class="title">InvertBiTree</span><span class="params">(BTNode* root)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//递归</span></span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">nullptr</span>)<span class="keyword">return</span> root;</span><br><span class="line">    <span class="comment">//交换左右孩子节点</span></span><br><span class="line">    <span class="keyword">auto</span> temp = root -&gt; left;</span><br><span class="line">    root-&gt;left = root-&gt;right;</span><br><span class="line">    root-&gt;right = temp;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//递归处理左右子树</span></span><br><span class="line">    InvertBiTree(root-&gt;left);</span><br><span class="line">    InvertBiTree(root-&gt;right);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用主程序验证</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;BiTree.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	BTNode* root;</span><br><span class="line">	ElemType A[] = <span class="string">&quot;ABD##E##C#F##&quot;</span>; <span class="comment">//以&quot;#&quot;补全空分支后的前序遍历序列</span></span><br><span class="line"></span><br><span class="line">	InitBTree(root); <span class="comment">//初始化空二叉树</span></span><br><span class="line">	CreateBTree_Pre(root, A); <span class="comment">//以前序遍历序列建立二叉树</span></span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;中序遍历序列：&quot;</span>;</span><br><span class="line">	InOrder(root); <span class="comment">//输出中序遍历序列</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">auto</span> inverRoot = InvertBiTree(root);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;反转后中序遍历序列：&quot;</span>;</span><br><span class="line">	InOrder(root); <span class="comment">//输出中序遍历序列</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	ClearBTree(root);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>利用非递归方法</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//实现二叉树的反转函数</span></span><br><span class="line"><span class="function">BTNode* <span class="title">InvertBiTree</span><span class="params">(BTNode* root)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//非递归</span></span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span> root;</span><br><span class="line">    <span class="built_in">queue</span>&lt;BTNode*&gt; <span class="built_in">queue</span>;</span><br><span class="line">    <span class="built_in">queue</span>.push(root);</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">queue</span>.empty()) &#123;</span><br><span class="line">        <span class="comment">// 取队首结点</span></span><br><span class="line">        BTNode* cur = <span class="built_in">queue</span>.front();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 左右子结点入队列</span></span><br><span class="line">        <span class="keyword">if</span> (cur-&gt;left != <span class="literal">nullptr</span>) <span class="built_in">queue</span>.push(cur-&gt;left);</span><br><span class="line">        <span class="keyword">if</span> (cur-&gt;right != <span class="literal">nullptr</span>) <span class="built_in">queue</span>.push(cur-&gt;right);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 交换左右子结点</span></span><br><span class="line">        <span class="keyword">auto</span> tmp = cur-&gt;left;</span><br><span class="line">        cur-&gt;left = cur-&gt;right;</span><br><span class="line">        cur-&gt;right = tmp;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 队首结点出队列</span></span><br><span class="line">        <span class="built_in">queue</span>.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样利用刚刚写的主程序验证</p>
+]]></content>
+      <tags>
+        <tag>数据结构与算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JUnit之EclEmma覆盖率工具（eclipse）</title>
+    <url>/blog/2021/06/24/JUnit%E4%B9%8BEclEmma%E8%A6%86%E7%9B%96%E7%8E%87%E5%B7%A5%E5%85%B7%EF%BC%88eclipse%EF%BC%89/</url>
+    <content><![CDATA[<h3 id="EclEmma的多种安装方法"><a href="#EclEmma的多种安装方法" class="headerlink" title="EclEmma的多种安装方法"></a>EclEmma的多种安装方法</h3><ul>
+<li><p>在eclipse中的Eclipse Marketplace安装插件<br>  在eclipse窗口Help -&gt; Eclipse Marketplace 查询 EclEmma ，查询后点击Install 完成后重启即可<br>  <img src="https://img-blog.csdnimg.cn/20210416111601911.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>下载安装包解压安装<br>  <a href="https://www.eclemma.org/download.html">下载地址</a><br>  进入下载页面后下载一个自己需要的版本，这里以<a href="https://github.com/eclipse/eclemma/releases/download/v3.1.4/eclemma-3.1.4.zip">eclemma-3.1.4</a>为例，下载完成后将其解压到一个文件夹中（自己可随意选，英文路径），完成后打开eclipse，Window -&gt; Preferences -&gt; Install/Update -&gt; Available Software Sites ，单击Add弹出窗口点击local选择你刚刚解压的路劲，然后再为其起一个名字<strong>EclEmma</strong>，点击Add。完成后重启eclipse即可。<br>  <img src="https://img-blog.csdnimg.cn/20210416113003740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>根据在Install New Software中通过查询添加<br>  在eclipse窗口 Help -&gt; Install New Software ，在其中输入<code>EclEmma - http://update.eclemma.org/</code>单击Add<br>  在弹出页面再次单击Add<br>  <img src="https://img-blog.csdnimg.cn/20210416113422702.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>后将文件选上Next即可，后面的接受协议其他默认即可，最终Finsh等待下载，下载完成后，重启eclipse<br><img src="https://img-blog.csdnimg.cn/20210416113558261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="EclEmma的使用"><a href="#EclEmma的使用" class="headerlink" title="EclEmma的使用"></a>EclEmma的使用</h3><p>例：<br>CalCulate文件</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculate</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a + b;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a - b;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mul</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a * b;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">div</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a / b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试用例CalculateTestWithJUnit4</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.*;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.AfterClass;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.BeforeClass;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lab01.Calculate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculateTestWithJUnit4</span> </span>&#123;</span><br><span class="line">	Calculate cal;  </span><br><span class="line">	</span><br><span class="line">	<span class="meta">@BeforeClass</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setUpBeforeClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@AfterClass</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tearDownAfterClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Before</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;  </span><br><span class="line">		cal = <span class="keyword">new</span> Calculate();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="meta">@After</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;  </span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">		<span class="keyword">int</span> result = cal.add(<span class="number">12</span>, -<span class="number">4</span>);  </span><br><span class="line">		assertEquals(<span class="number">8</span>, result,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSub</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> result = cal.sub(<span class="number">45</span>, -<span class="number">1</span>);</span><br><span class="line">		assertEquals(<span class="number">46</span>,result,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMul</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> result = cal.mul(<span class="number">2</span>, -<span class="number">4</span>);</span><br><span class="line">		assertEquals(-<span class="number">8</span>,result,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDiv</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> result = cal.div(-<span class="number">4</span>, <span class="number">1</span>);</span><br><span class="line">		assertEquals(-<span class="number">4</span>, result,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完成后，现在我们可以先执行测试用例是否有代码错误，如若测试用例没有代码错误，我们就开始使用覆盖率工具，再测试类中右键或者再文件类中右键选择Coverage As -&gt; Junit Test执行，后可以看到控制台有有一个View为Coverage即使覆盖率<br><img src="https://img-blog.csdnimg.cn/2021041611444096.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<h4 id="导出测试覆盖率报告"><a href="#导出测试覆盖率报告" class="headerlink" title="导出测试覆盖率报告"></a>导出测试覆盖率报告</h4><p> 文件右键选择Export，选择Run/Debug下的Coverage Session ，Next选择需要导出的测试报告（按时间段分），导出的文件一般为选择HTML格式。在导出文件中打开index.html就可以看见如下报告<br><img src="https://img-blog.csdnimg.cn/20210416115550612.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+]]></content>
+      <tags>
+        <tag>Test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法1</title>
+    <url>/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%951/</url>
+    <content><![CDATA[<h4 id="基本知识："><a href="#基本知识：" class="headerlink" title="基本知识："></a>基本知识：</h4><h5 id="抽象数据类型"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h5><blockquote>
+<p>数据元素集合以及定义在该集合上的一组操作，简称为ADT（Abstract Data Type）。<br>“抽象”指与具体实现无关，仅考虑能做什么，而不考虑如何做。<br>形式描述：<br>ADT = ( D，R，P )其中：D 是数据对象，R 是 D 上的关系集，P 是 D 的基本操作集。</p>
+</blockquote>
+<h5 id="抽象数据类型的重要特征"><a href="#抽象数据类型的重要特征" class="headerlink" title="抽象数据类型的重要特征"></a>抽象数据类型的重要特征</h5><blockquote>
+<p>1.数据抽象<br>用ADT描述程序处理的实体时，强调的是其本质的特征、其所能完成的功能以及它和外部用户的接口（即外界使用它的方法）。<br>2.数据封装<br>将实体的外部特性和其内部实现细节分离，并且对外部用户隐藏其内部实现细节。<br>3.抽象数据类型的实现<br>面向对象——类（class），如C++、Java语言<br>面向过程——结构体（struct），如C语言</p>
+</blockquote>
+<h5 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h5><blockquote>
+<p>程序＝数据结构＋算法<br>算法就是求解问题的一系列步骤的集合。<br>通常把具体存储结构上的操作实现步骤或过程称为算法。</p>
+</blockquote>
+<ul>
+<li><p><strong>算法的特性</strong></p>
+<blockquote>
+<ol>
+<li>有穷性： 对于任意一组合法的输入值，在执行有穷步骤之后一定能结束。</li>
+<li>确定性：每条指令必须有确切的含义，不能有二义性。</li>
+<li>可行性：算法中描述的操作都是用已经实现的基本运算组成。</li>
+<li>输入：可以有零个或多个输入。</li>
+<li>输出：一组与”输入”有确定关系的量值。有一个或多个输出。</li>
+</ol>
+</blockquote>
+</li>
+<li><p><strong>算法的评价（设计准则）</strong></p>
+<blockquote>
+<ol>
+<li>正确性：能正确执行预定的功能。</li>
+<li>可使用性：方便使用，用户友好性。</li>
+<li>可读性：易于理解，逻辑清晰。</li>
+<li>健壮性：具有很好的容错性。能提供异常处理，不容易出现崩溃。</li>
+<li>高效性：执行时间短（时间效率）、占用存储空间少（空间效率）。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h5 id="算法频度"><a href="#算法频度" class="headerlink" title="算法频度"></a>算法频度</h5><blockquote>
+<p>一般用算法中<strong>语句被执行的次数</strong>（频度）来表示算法的<strong>时间效率</strong>。 </p>
+</blockquote>
+<p>分析下面程序段的频度：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i, sum = <span class="number">0</span>;				（<span class="number">1</span>次）</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)		（n+<span class="number">1</span>次）</span><br><span class="line">  sum = sum + i;			（n次）</span><br><span class="line"><span class="keyword">return</span> sum;					（<span class="number">1</span>次）</span><br></pre></td></tr></table></figure>
+<p>T(n)=2n+3，且T(n)是n数量级的。</p>
+<h5 id="（渐进）时间复杂度"><a href="#（渐进）时间复杂度" class="headerlink" title="（渐进）时间复杂度"></a>（渐进）时间复杂度</h5><blockquote>
+<p>忽略次要语句的执行次数，只对重要的语句（原操作）和执行最频繁的语句进行计数，同时对计算结果只取其<strong>最高次幂</strong>，且<strong>略去系数</strong>不写。<br>渐近时间复杂度常简称为时间复杂度，用大O表示。<br>               T(n)=2n+3=O(n)<br>既可简化T(n)的计算，又能比较客观地反映出<strong>当n很大时，算法的时间性能</strong>。<br>例如：T(n)=3n2-5n+10000=O(n2)</p>
+</blockquote>
+<h6 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h6><p>1、观察结构体类型的定义形式、结构体成员的访问方式和结构体变量在内存中的数据组织形式，请记住<strong>结构体类型变量的数据域的连续排列方式</strong>。注意掌握用<strong>typedef关键字为已定义的合法类型名增加新名称</strong>。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">StructTest</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> t1;</span><br><span class="line">    <span class="keyword">int</span> t2;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//typedef StructTest TEST;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">	StructTest my_Var;</span><br><span class="line">	<span class="comment">//TEST my_Var;</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;&amp;my_Var&lt;&lt;<span class="string">&quot;  &quot;</span>&lt;&lt;&amp;my_Var.t1&lt;&lt;<span class="string">&quot;  &quot;</span>&lt;&lt;&amp;my_Var.t2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210508142351179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2、运行下列程序，比较<strong>值传递、指针传递、引用传递</strong>*三种函数参数的传递方法。用F9设置断点①至⑥，用F5调试程序并在Watch监视窗口中观察下列表格中变量的值。结合断点位置变量的相关数据，分析哪个函数可以交换实参的值，并总结用指针和引用作为函数参数的设计步骤。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap1</span><span class="params">(<span class="keyword">int</span> x,  <span class="keyword">int</span> y)</span></span>;<span class="comment">//值传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap2</span><span class="params">(<span class="keyword">int</span> *px,  <span class="keyword">int</span> *py)</span></span>;<span class="comment">//指针传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap3</span><span class="params">(<span class="keyword">int</span> &amp;x,  <span class="keyword">int</span> &amp;y)</span></span>;<span class="comment">//引用传递</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">1</span>, b=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> *pa=&amp;a, *pb=&amp;b;  <span class="comment">//将地址赋值给指针</span></span><br><span class="line"></span><br><span class="line">	swap1(a,b); <span class="comment">//断点①</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;After calling swap1:a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;, b=&quot;</span>&lt;&lt;b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	a=<span class="number">1</span>,b=<span class="number">2</span>;</span><br><span class="line">	swap2(pa,pb); <span class="comment">//断点③</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;After calling swap2:a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;, b=&quot;</span>&lt;&lt;b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	a=<span class="number">1</span>,b=<span class="number">2</span>;</span><br><span class="line">	swap3(a,b); <span class="comment">//断点⑤ </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;After calling swap3:a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;, b=&quot;</span>&lt;&lt;b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//值传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap1</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t; </span><br><span class="line">	t=x;  x=y;  y=t; <span class="comment">//断点②</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//指针传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap2</span><span class="params">(<span class="keyword">int</span> *px, <span class="keyword">int</span> *py)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t; </span><br><span class="line">	t=*px;  *px=*py;  *py=t; <span class="comment">//断点④</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//引用传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap3</span><span class="params">(<span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t; </span><br><span class="line">	t=x;  x=y;  y=t; <span class="comment">//断点⑥</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>值传递<br><img src="https://img-blog.csdnimg.cn/20210508145523700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>指针传递<br><img src="https://img-blog.csdnimg.cn/20210508145415826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>引用传递<br><img src="https://img-blog.csdnimg.cn/20210508145538306.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3、在以下矩形抽象数据类型的基础上设计矩形的周长和面积的操作。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rect</span> &#123;</span></span><br><span class="line">	<span class="keyword">double</span> length;</span><br><span class="line">	<span class="keyword">double</span> width;</span><br><span class="line">&#125;;<span class="comment">//声明矩形（矩形的类型定义）</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitRect</span><span class="params">(Rect&amp; R, <span class="keyword">double</span> l, <span class="keyword">double</span> w)</span></span>;<span class="comment">//构造矩形</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Circumference</span><span class="params">(Rect&amp; R)</span></span>;<span class="comment">//求矩形周长</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">AreaR</span><span class="params">(Rect&amp; R)</span></span>;<span class="comment">//求矩形面积</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Rect my_rect;<span class="comment">//定义矩形变量my_rect</span></span><br><span class="line">	<span class="keyword">double</span> Length, Width, Circ, Area;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Input length,width:&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; Length &gt;&gt; Width;</span><br><span class="line">	InitRect(my_rect, Length, Width);<span class="comment">//构造矩形my_rect</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//此处写程序</span></span><br><span class="line">	Circ = Circumference(my_rect);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;周长：&quot;</span> &lt;&lt; Circ &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	Area = AreaR(my_rect);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;面积：&quot;</span> &lt;&lt; Area &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//初始化矩形</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitRect</span><span class="params">(Rect&amp; R, <span class="keyword">double</span> l, <span class="keyword">double</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	R.length = l;</span><br><span class="line">	R.width = w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求矩形周长</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Circumference</span><span class="params">(Rect&amp; R)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//此处写程序</span></span><br><span class="line">	<span class="keyword">return</span> R.length + R.width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求矩形面积</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">AreaR</span><span class="params">(Rect&amp; R)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//此处写程序</span></span><br><span class="line">	<span class="keyword">return</span> R.length * R.width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>数据结构与算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法8</title>
+    <url>/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%958/</url>
+    <content><![CDATA[<h5 id="一、二叉树的定义"><a href="#一、二叉树的定义" class="headerlink" title="一、二叉树的定义"></a>一、二叉树的定义</h5><blockquote>
+<p>二叉树（binary tree）是一个有限的节点集合，这个集合或者为空，或者由一个根节点和两棵互不相交的称为左子树（left subtree）和右子树（right subtree）的二叉树组成。</p>
+</blockquote>
+<h5 id="二、二叉树遍历的定义"><a href="#二、二叉树遍历的定义" class="headerlink" title="二、二叉树遍历的定义"></a>二、二叉树遍历的定义</h5><ol>
+<li>二叉树的遍历是指按一定次序访问二叉树中的每个节点，且每个节点仅被访问一次。</li>
+<li>在二叉树的遍历过程中不要将整棵树看成是由多个节点组成，而要看成是由根、左子树、右子树组成。</li>
+</ol>
+<h5 id="三、二叉树遍历的方法"><a href="#三、二叉树遍历的方法" class="headerlink" title="三、二叉树遍历的方法"></a>三、二叉树遍历的方法</h5><ol>
+<li>前序遍历（根 -&gt; 左子树 -&gt; 右子树）</li>
+<li>中序遍历（左子树 -&gt; 根 -&gt; 右子树）</li>
+<li>后序遍历（左子树 -&gt; 右子树 -&gt; 根）</li>
+<li>按层遍历：对二叉树按照从上至下，每层按照从左到右的顺序进行遍历。</li>
+</ol>
+<h5 id="四、二叉树的基本操作"><a href="#四、二叉树的基本操作" class="headerlink" title="四、二叉树的基本操作"></a>四、二叉树的基本操作</h5><ol>
+<li>创建一棵二叉树</li>
+<li>查找二叉树中的某个值的节点</li>
+<li>找二叉树中的孩子节点</li>
+<li>求二叉树的高度</li>
+<li>输出二叉树</li>
+<li>统计二叉树中节点总数</li>
+</ol>
+<h5 id="五、二叉树的构造"><a href="#五、二叉树的构造" class="headerlink" title="五、二叉树的构造"></a>五、二叉树的构造</h5><ol>
+<li>同一棵二叉树具有唯一先序序列、中序序列、后序序列</li>
+<li>任何 n（n &gt;=0）个不同节点的二叉树，都可由它的中序序列和先序序列唯一地确定</li>
+<li>任何 n（n&gt;=0）个不同节点的二叉树，都可由它的中序序列和后序序列唯一地确定</li>
+</ol>
+<h5 id="六、实验"><a href="#六、实验" class="headerlink" title="六、实验"></a>六、实验</h5><p>现有头文件BiTree.h</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> ElemType;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">	ElemType data; <span class="comment">//数据域</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">left</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">right</span>;</span> <span class="comment">//结点的左右子树指针</span></span><br><span class="line">&#125; BTNode; <span class="comment">//二叉树结点类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化空二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitBTree</span><span class="params">(BTNode*&amp; root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//按照前序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateBTree_Pre</span><span class="params">(BTNode*&amp; root, ElemType Array[])</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//前序遍历二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算二叉树深度</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BTreeDepth</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放二叉树中所有结点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ClearBTree</span><span class="params">(BTNode*&amp; root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//按照中序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InOrder</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//按照后序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PostOrder</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//统计二叉树中结点总数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BTreeCount</span><span class="params">(BTNode* root)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查找二叉树中值为item的结点</span></span><br><span class="line"><span class="function">BTNode* <span class="title">FindBTree</span><span class="params">(BTNode* root, ElemType item)</span></span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>接口实现源文件BiTree.cpp</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;BiTree.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化空二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitBTree</span><span class="params">(BTNode*&amp; root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	root = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算二叉树深度</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BTreeDepth</span><span class="params">(BTNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> CALL = <span class="number">0</span>; <span class="comment">//记录调用次数</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> RETURN = <span class="number">0</span>; <span class="comment">//记录返回次数</span></span><br><span class="line"></span><br><span class="line">	CALL++; <span class="comment">//调用次数加一</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (root == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		RETURN++; <span class="comment">//返回次数加一</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">int</span> depl = BTreeDepth(root-&gt;left);</span><br><span class="line">		<span class="keyword">int</span> depr = BTreeDepth(root-&gt;right);</span><br><span class="line">		<span class="keyword">if</span> (depl &gt; depr) &#123;</span><br><span class="line">			RETURN++; <span class="comment">//返回次数加一</span></span><br><span class="line">			<span class="keyword">return</span> depl + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			RETURN++; <span class="comment">//返回次数加一</span></span><br><span class="line">			<span class="keyword">return</span> depr + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放二叉树中所有结点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ClearBTree</span><span class="params">(BTNode*&amp; root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		ClearBTree(root-&gt;left);</span><br><span class="line">		ClearBTree(root-&gt;right);</span><br><span class="line">		<span class="keyword">delete</span> root;</span><br><span class="line">		root = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>源文件content.cpp</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;BiTree.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	BTNode* root;</span><br><span class="line">	ElemType A[] = <span class="string">&quot;ABD##E##CF#G###&quot;</span>; <span class="comment">//以&quot;#&quot;补全空分支后的前序遍历序列</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	InitBTree(root); <span class="comment">//初始化空二叉树</span></span><br><span class="line">	CreateBTree_Pre(root, A); <span class="comment">//以前序遍历序列建立二叉树</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;前序遍历序列：&quot;</span>;</span><br><span class="line">	PreOrder(root); <span class="comment">//输出前序遍历序列</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//cout &lt;&lt; &quot;中序遍历序列：&quot;;</span></span><br><span class="line">	<span class="comment">//InOrder(root); //输出中序遍历序列</span></span><br><span class="line">	<span class="comment">//cout &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//cout &lt;&lt; &quot;后序遍历序列：&quot;;</span></span><br><span class="line">	<span class="comment">//PostOrder(root); //输出后序遍历序列</span></span><br><span class="line">	<span class="comment">//cout &lt;&lt; endl;</span></span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;深度：&quot;</span> &lt;&lt; BTreeDepth(root) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//计算二叉树深度</span></span><br><span class="line"></span><br><span class="line">	ClearBTree(root);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20210421164702298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如上图所示：<br>1)写出前序、中序和后序遍历序列<br>    前序：ABDECFG<br>    中序：DBEAFGC<br>    后序：DEBGFCA</p>
+<p>2)分别写出单分支结点和叶子结点<br>    单分支：C、F<br>    叶子：D、E、G</p>
+<p>3)以(#号)补全单分支结点和叶子结点的空分支</p>
+<p>4)写出补全空分支(#号)后二叉树的前序遍历序列</p>
+<pre><code>    ABD##E##CF#G###
+</code></pre>
+<p>5)在BiTree项目的main()函数中，将第4)小题的带#号的前序遍历序列作为数组A[ ]的值，并执行程序，以理解CreateBTree_Pre( )函数的递归建树的过程。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//按照前序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateBTree_Pre</span><span class="params">(BTNode*&amp; root, ElemType Array[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>; <span class="comment">//静态变量count</span></span><br><span class="line">	<span class="keyword">char</span> item = Array[count]; <span class="comment">//读取Array[]数组中的第count个元素</span></span><br><span class="line">	count++;</span><br><span class="line">	<span class="keyword">if</span> (item == <span class="string">&#x27;#&#x27;</span>) &#123; <span class="comment">//如果读入#字符，创建空树</span></span><br><span class="line">		root = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		root = <span class="keyword">new</span> BTNode; <span class="comment">//建根结点</span></span><br><span class="line">		root-&gt;data = item;</span><br><span class="line">		CreateBTree_Pre(root-&gt;left, Array); <span class="comment">//建左子树</span></span><br><span class="line">		CreateBTree_Pre(root-&gt;right, Array); <span class="comment">//建右子树</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>6)在BiTree项目中添加二叉树的前序、中序、后序遍历接口，并在主函数中进行验证。<br>前序遍历：PreOrder(BTNode* root)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//前序遍历二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(BTNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; root-&gt;data; <span class="comment">//访问根</span></span><br><span class="line">		PreOrder(root-&gt;left); <span class="comment">//前序遍历左子树</span></span><br><span class="line">		PreOrder(root-&gt;right); <span class="comment">//前序遍历右子树</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>中序遍历：void InOrder (BTNode *root)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//按照中序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InOrder</span><span class="params">(BTNode* root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		InOrder(root-&gt;left);</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; root-&gt;data;</span><br><span class="line">		InOrder(root-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>后序遍历：void PostOrder (BTNode *root)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//按照后序遍历序列建立二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PostOrder</span><span class="params">(BTNode* root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		PostOrder(root-&gt;left);</span><br><span class="line">		PostOrder(root-&gt;right);</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; root-&gt;data;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>7）关于二叉树遍历的另外两个应用：<br>A）统计二叉树中结点总数<br>     int BTreeCount(BTNode* root)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//统计二叉树中结点总数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BTreeCount</span><span class="params">(BTNode* root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//空树的结点数为0</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> BTreeCount(root-&gt;left) +</span><br><span class="line">		BTreeCount(root-&gt;right) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>B）查找二叉树中值为item的结点<br>    BTNode* FindBTree(BTNode* root, ElemType item)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//查找二叉树中值为item的结点</span></span><br><span class="line"><span class="function">BTNode* <span class="title">FindBTree</span><span class="params">(BTNode* root, ElemType item)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root == <span class="literal">NULL</span>)  <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (root-&gt;data == item)  <span class="keyword">return</span> root;</span><br><span class="line">	BTNode* p = FindBTree(root-&gt;left, item);</span><br><span class="line">	<span class="keyword">if</span> (p != <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> p;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> FindBTree(root-&gt;right, item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>二叉树进阶：</strong><a href="https://www.shuibao.ml/blog/2021/05/12/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%8D%E8%BD%AC/">二叉树反转</a></p>
+]]></content>
+      <tags>
+        <tag>数据结构与算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决Tomcat控制台中文乱码</title>
+    <url>/blog/2021/06/24/%E8%A7%A3%E5%86%B3Tomcat%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</url>
+    <content><![CDATA[<h6 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h6><p><a href="http://tomcat.apache.org/">官网下载Tomcat</a><br><img src="https://img-blog.csdnimg.cn/20201123212458560.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>随便你想下载那个最后一个为安装版本<br><img src="https://img-blog.csdnimg.cn/20201123212602296.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h6 id="修改乱码"><a href="#修改乱码" class="headerlink" title="修改乱码"></a>修改乱码</h6><p>安装完成后打开conf目录下的logging.properties配置文件，修改以下编码字符集（Tomcat自带的是UTF-8）<br><img src="https://img-blog.csdnimg.cn/20201123213054913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>修改以后再次打开就不会再乱码了<br><img src="https://img-blog.csdnimg.cn/2020112321325283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201124081451422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+]]></content>
+      <tags>
+        <tag>Server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用Nexus创建私服</title>
+    <url>/blog/2021/06/24/%E7%94%A8Nexus%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%8D/</url>
+    <content><![CDATA[<h4 id="下载Nexus"><a href="#下载Nexus" class="headerlink" title="下载Nexus"></a>下载Nexus</h4><p><a href="https://www.sonatype.com/nexus/repository-oss-download">官网下载连接</a><br>可以下载3.x版本的，<br><img src="https://img-blog.csdnimg.cn/20210118164102251.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>也可以下载2.x版本的，滑倒页面最下方会看到如下页面<br><img src="https://img-blog.csdnimg.cn/20210118171737532.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210118172143489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>就到了下载页面，有许多版本任你挑选….<br><img src="https://img-blog.csdnimg.cn/20210118172226679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><a href="https://pan.baidu.com/s/1qtZvrvwasi7T2GiPGpU4Og">百度网盘地址2.x</a><br>提取码：eada </p>
+<h4 id="启用Nexus"><a href="#启用Nexus" class="headerlink" title="启用Nexus"></a>启用Nexus</h4><p>将下载好的压缩包解压到你喜欢的目录之下，在用管理员打开命令行，路劲改到Nexus的bin目录下<br>再用nexus  install  和  nexus  start  再用浏览器输入网址<strong><a href="http://localhost:8081/nexus">http://localhost:8081/nexus</a></strong>打开nexus<br><img src="https://img-blog.csdnimg.cn/2021011817260931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2021011817295472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="私服"><a href="#私服" class="headerlink" title="私服"></a>私服</h4><p>进去之后点击Login in登录账号密码为admin/admin123<br>点击仓库<br><img src="https://img-blog.csdnimg.cn/2021011817310051.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击Central，将中央仓库地址改为阿里云镜像<br><a href="http://maven.aliyun.com/nexus/content/groups/public/">http://maven.aliyun.com/nexus/content/groups/public/</a><br>完成后单击save保存<br><img src="https://img-blog.csdnimg.cn/20210118173550995.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击group，在这里面我们可以修改仓库的顺序（鼠标单击不松开移动），将不需要的仓库移到右边（中间的左右箭头），<br><img src="https://img-blog.csdnimg.cn/20210118173909114.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如<br><img src="https://img-blog.csdnimg.cn/20210118174144152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>完成后单击save保存即可</p>
+<h5 id="在Maven中关联私服"><a href="#在Maven中关联私服" class="headerlink" title="在Maven中关联私服"></a>在Maven中关联私服</h5><p>将在Maven得conf目录下得setting.xml打开，找到<code>&lt;servers&gt;&lt;/servers&gt;</code>，在其中添加</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servers</span>&gt;</span></span><br><span class="line">	 <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-public<span class="tag">&lt;/<span class="name">id</span>&gt;</span><span class="comment">&lt;!-- nexus认证id --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">username</span>&gt;</span><span class="comment">&lt;!--nexus中得用户名与密码  --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>配置私服为Maven得远程仓库</strong><br>在setting.xml中找到<code>&lt;profiles&gt;&lt;/profiles&gt;</code><br>注意：此处的repositor的id要和上面的serverid保持一致，才可以私服中认证通过</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-public<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  <span class="comment">&lt;!--nexus认证id  --&gt;</span></span><br><span class="line">				<span class="comment">&lt;!-- name随便 --&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus Release Snapshot Repository<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">				<span class="comment">&lt;!-- 地址是nexus中的仓库组对应的地址 --&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">releases</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">snapshots</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span>  <span class="comment">&lt;!-- 插件仓库地址，各节点的含义和上面是一样的 --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-public<span class="tag">&lt;/<span class="name">id</span>&gt;</span>   <span class="comment">&lt;!--nexus认证id  --&gt;</span></span><br><span class="line">				<span class="comment">&lt;!-- 地址是nexus中的仓库组对应的地址 --&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">releases</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">snapshots</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>地址是nexus中的仓库组对应的地址</strong><br><img src="https://img-blog.csdnimg.cn/20210119141047366.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="地址是nexus中的仓库组对应的地址"><br>配置完之后，添加</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span>  <span class="comment">&lt;!--profile的id --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="将项目部署到私服中"><a href="#将项目部署到私服中" class="headerlink" title="将项目部署到私服中"></a>将项目部署到私服中</h4><ul>
+<li>执行：mvn deploy即可将项目部署到私服对应的仓库中，此时项目中的打包方式多为jar</li>
+<li>但需要提前在项目的pom.xml中配置部署私服仓库位置，如下：<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	......</span><br><span class="line"><span class="tag">&lt;/<span class="name">denpendencies</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--  在项目中的pom.xml中  配置私服的仓库地址，可以将项目打jar包部署到私服--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">distributionManagemment</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-public<span class="tag">&lt;/<span class="name">id</span>&gt;</span> <span class="comment">&lt;!-- nexus认证id--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/nexus/content/repositories/releases<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-public<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/nexus/content/repositories/snapshots<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">distributionManagemment</span>&gt;</span></span><br></pre></td></tr></table></figure>
+为什么填写两个路径呢？<br><img src="https://img-blog.csdnimg.cn/20210119144934885.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>路径<a href="http://localhost:8081/nexus/content/repositories/releases%E5%9C%A8nexus%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE%E6%98%AF">http://localhost:8081/nexus/content/repositories/releases在nexus中的位置是</a><br><img src="https://img-blog.csdnimg.cn/20210119145129272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>而<a href="http://localhost:8081/nexus/content/repositories/snapshots%E6%98%AF">http://localhost:8081/nexus/content/repositories/snapshots是</a><br><img src="https://img-blog.csdnimg.cn/2021011914520876.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODU4NDU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring介绍</title>
+    <url>/blog/2021/07/17/Spring%E4%BB%8B%E7%BB%8D/</url>
+    <content><![CDATA[<h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><h4 id="1-1-原生web开发中存在哪些问题？"><a href="#1-1-原生web开发中存在哪些问题？" class="headerlink" title="1.1 原生web开发中存在哪些问题？"></a>1.1 原生web开发中存在哪些问题？</h4><blockquote>
+<ul>
+<li>传统web开发存在硬编码所造成的过度程序耦合（例如：Service中作为属性Dao对象）。</li>
+<li>部分Java EE API较为复杂，使用效率低（例如：JDBC开发步骤）。</li>
+<li>侵入性强，移植性差（例如：DAO实现的更换，从Connection到SqlSession）。</li>
+</ul>
+</blockquote>
+<h3 id="二、Spring框架"><a href="#二、Spring框架" class="headerlink" title="二、Spring框架"></a>二、Spring框架</h3><h4 id="2-1-概念"><a href="#2-1-概念" class="headerlink" title="2.1 概念"></a>2.1 概念</h4><blockquote>
+<ul>
+<li>Spring是一个项目管理框架，同时也是一套Java EE解决方案。</li>
+<li>Spring是从多优秀设计模式的组合（工厂、单例、代理、适配器、观察者、模板、策略）。</li>
+<li>Spring并未替代现有框架产品，而是将从多框架进行有机整合，简化企业级开发，俗称“胶水框架”。</li>
+</ul>
+</blockquote>
+<h4 id="2-2-术语介绍"><a href="#2-2-术语介绍" class="headerlink" title="2.2 术语介绍"></a>2.2 术语介绍</h4><blockquote>
+<ul>
+<li>轻量级（Lightweight）：Spring 核心包容量不到1MB的大小，可以在很多小型设备中使用Spring</li>
+<li>非侵入性(No intrusive)：增强应用程序组件的可重用性，减少对框架的依赖</li>
+<li>容器（Container）：根据配置文件自动生成对象及属性等，不用编写任何代码来产生对象</li>
+<li>Inversion of Control(IoC)与Dependency Injection（DI）：IoC目的就是依赖于抽象；对象与对象之间的关系由容器根据配置文件将依赖关系注入到指定的对象中</li>
+<li>AOP(Aspect-oriented programming)：基于代理及拦截器的机制，与Spring IoC 结合，采用运行时Weaving方式在Spring框架的应用程序中使用各种声明式系统级服务。</li>
+<li>持久层（Persistent）：Spring提供DAO、编程事务与声明式事务，对于ORM工具（Hibernate、MyBatis）的整合及使用上简化。</li>
+</ul>
+</blockquote>
+<h4 id="2-3-访问于下载"><a href="#2-3-访问于下载" class="headerlink" title="2.3 访问于下载"></a>2.3 访问于下载</h4><blockquote>
+<p>官方网站：<a href="https://spring.io/">https://spring.io/</a></p>
+<p>下载地址：<a href="https://repo.spring.io/release.org/springframework/spring/">https://repo.spring.io/release.org/springframework/spring/</a></p>
+</blockquote>
+<h3 id="三、Spring框架的组成"><a href="#三、Spring框架的组成" class="headerlink" title="三、Spring框架的组成"></a>三、Spring框架的组成</h3><blockquote>
+<p>Spring架构有诸多模块组成，可分为</p>
+<ul>
+<li>核心技术：<strong>依赖注入</strong>，事件，资源，i18n，验证，数据绑定，类型转换，SpEL，<strong>AOP</strong>。</li>
+<li>测试：模拟对象，TestConnection框架，Spring MVC测试，WebTestClient。</li>
+<li>数据访问：<strong>事务</strong>，DAO支持，JDBC，ORM，封送XML。</li>
+<li>Spring MVC 和 Spring WebFlux Web框架。</li>
+<li>集成：远程处理，JMS，JCA，JMX，电子邮件，任务，调度，缓存。</li>
+<li>语言：Kotlin，Groovy，动态语言。</li>
+</ul>
+</blockquote>
+<p><img src="/blog/2021/07/17/Spring%E4%BB%8B%E7%BB%8D/image-20210713131051127.png" alt="o"></p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>ArtifactId</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>org.springframework</td>
+<td><strong>spring-beans</strong></td>
+<td><strong>Beans支持，包含Groovy</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-aop</strong></td>
+<td><strong>基于代理的AOP支持</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-aspects</strong></td>
+<td><strong>基于AspectJ 的切面</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-context</strong></td>
+<td><strong>应用剩下文运行时，包括调度和远程抽象</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-context-support</strong></td>
+<td><strong>支持将常见的第三方类库集成到Spring应用上下文</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-core</strong></td>
+<td><strong>其他模块所依赖的核心模块</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-expression</strong></td>
+<td><strong>Spring表达式语言，SpEL</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-instrument</td>
+<td>JVM引导的仪表（检测器）代理</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-instrument-tomcat</td>
+<td>Tomcat的仪表（检测器）代理</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-jdbc</td>
+<td>支持包括数据源设置和JDBC访问支持</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-jms</td>
+<td>支持包括发送/接收JMS消息的助手类</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-messaging</td>
+<td>对消息架构和协议的支持</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-orm</td>
+<td>对象/关系映射，包括JPA和Hibernate的支持</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-oxm</td>
+<td>对象/XML 映射（Object/XML Mapping，OXM）</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-test</strong></td>
+<td><strong>单元测试和集成测试支持组件</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-tx</strong></td>
+<td><strong>事务基础组件，包括对DAO的支持及JCA的集成</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-web</strong></td>
+<td><strong>web支持包，包括客户端及web远程调用</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-webmvc</strong></td>
+<td><strong>REST web服务及 web应用的MVC实现</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-webmvc-portlet</td>
+<td>用户Portlet环境的MVC实现</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-websocket</td>
+<td>WebSocket 和 Sock JS 实现，包括对STOMP的支持</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-jcl</strong></td>
+<td><strong>Jakarta Commons Logging 日志系统</strong></td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>-Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring AOP(面向切面编程)【重点】</title>
+    <url>/blog/2021/07/17/Spring-AOP-%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B-%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/</url>
+    <content><![CDATA[<h3 id="十三、代理设计模式"><a href="#十三、代理设计模式" class="headerlink" title="十三、代理设计模式"></a>十三、代理设计模式</h3><h4 id="13-1-概念"><a href="#13-1-概念" class="headerlink" title="13.1 概念"></a>13.1 概念</h4><blockquote>
+<p>将核心功能与辅助功能（事务、日志、性能监控代码）分离，达到核心业务功能更纯粹、辅助业务功能可复用。</p>
+</blockquote>
+<p><img src="/blog/2021/07/17/Spring-AOP-%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B-%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/image-20210715190932258.png" alt="image-20210715190932258"></p>
+<h4 id="13-2-静态代理设计模式"><a href="#13-2-静态代理设计模式" class="headerlink" title="13.2 静态代理设计模式"></a>13.2 静态代理设计模式</h4><blockquote>
+<p>通过代理类的对象，为原始类的对象（目标类的对象）添加辅助功能，更容易更换代理实现类、利于维护。</p>
+</blockquote>
+<p><img src="/blog/2021/07/17/Spring-AOP-%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B-%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/image-20210715221927612.png" alt="image-20210715221927612"></p>
+<ul>
+<li>代理类 = 实现原始类相同接口 + 添加辅助功能 + 调用原始类的业务方法。</li>
+<li>静态代理的问题<ul>
+<li>代理类数量过多，不利于项目的管理。</li>
+<li>多个代理类的辅助功能代码冗余，修改时，维护性差。</li>
+</ul>
+</li>
+</ul>
+<h4 id="13-3-动态代理设计模式"><a href="#13-3-动态代理设计模式" class="headerlink" title="13.3 动态代理设计模式"></a>13.3 动态代理设计模式</h4><blockquote>
+<p>动态床架代理类的对象，为原始类的对象添加辅助功能。</p>
+</blockquote>
+<h5 id="13-3-1-JDK动态代理实现（基于接口）"><a href="#13-3-1-JDK动态代理实现（基于接口）" class="headerlink" title="13.3.1 JDK动态代理实现（基于接口）"></a>13.3.1 JDK动态代理实现（基于接口）</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//目标</span></span><br><span class="line"><span class="keyword">final</span> OrderService os = <span class="keyword">new</span> OrderServiceImpl();</span><br><span class="line"><span class="comment">//额外功能</span></span><br><span class="line">InvocationHandler handler = <span class="keyword">new</span> InvocationHandler()&#123;<span class="comment">//1. 设置回调函数（额外功能代码）</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;start...&quot;</span>);</span><br><span class="line">        method.invoke(os, args);</span><br><span class="line">        System.out.println(<span class="string">&quot;end...&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//2. 创建动态代理类</span></span><br><span class="line">Object proxyObj = Porxy.newProxyInstance(ClassLoder, Interfaces, InvocationHandler);</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="13-3-2-CGlib动态代理实现（基于继承）"><a href="#13-3-2-CGlib动态代理实现（基于继承）" class="headerlink" title="13.3.2 CGlib动态代理实现（基于继承）"></a>13.3.2 CGlib动态代理实现（基于继承）</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//目标</span></span><br><span class="line"><span class="keyword">final</span> OrderService os = <span class="keyword">new</span> OrderServiceImpl();</span><br><span class="line">Enhancer cnh = <span class="keyword">new</span> Enhancer(); <span class="comment">//1. 创建字节码增强对象</span></span><br><span class="line">enh.setSuperclass(os.getClass()); <span class="comment">//2. 设置父类（等价于是心啊原始类接口）</span></span><br><span class="line">enh.setCallback( <span class="keyword">new</span> InvocationHandler()&#123;<span class="comment">//3. 设置回调函数（额外功能代码）</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;start...&quot;</span>);</span><br><span class="line">        Object ret = method.invoke(os, args);</span><br><span class="line">        System.out.println(<span class="string">&quot;end...&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//2. 创建动态代理类</span></span><br><span class="line">OrderService proxy = enh.create();<span class="comment">//4. 创建动态代理类</span></span><br><span class="line">proxy.createOrder();</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="十四、面向切面编程【重点】"><a href="#十四、面向切面编程【重点】" class="headerlink" title="十四、面向切面编程【重点】"></a>十四、面向切面编程【重点】</h3><h4 id="14-1-概念"><a href="#14-1-概念" class="headerlink" title="14.1 概念"></a>14.1 概念</h4><blockquote>
+<p>AOP（Aspect Oriented Programming），即面向切面编程，利用一种成为“横切”的技术，剖开封装的对象内部，并将那些影响了多个类的公共行为封装到一个可重用模块，并将其命名为“Aspect”，即切面。所谓“切面”，简单说就是那些与业务无关，却为业务模块所共同调用的逻辑或责任封装起来，便于减少系统的重复代码，降低模块之间的耦合度，并有利于未来的可操作性和可维护性。</p>
+</blockquote>
+<p><img src="/blog/2021/07/17/Spring-AOP-%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B-%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/image-20210716091842698.png" alt="image-20210716091842698"></p>
+<h4 id="14-2-AOP开发术语"><a href="#14-2-AOP开发术语" class="headerlink" title="14.2 AOP开发术语"></a>14.2 AOP开发术语</h4><blockquote>
+<ul>
+<li>Aspect（切面）：将散落于各个业务逻辑之中的Cross-cutting concerns收集起来，设计成为独立可重用的对象，称为Aspect。</li>
+<li>Advice（增强）：Aspect当中对Cross-cutting concerns的具体实现称为Advice</li>
+<li>Jointpoint（连接点）：Advice在应用程序执行时加入业务流程的点或时机（AOP只支持方法的Jointpoint）</li>
+<li>Pointcut（切入点）：可提供一组规则（使用AspectJ pointcut expression language来描述）来匹配jointpoint，给满足规则的jointpoint添加advice。</li>
+<li>Target（被代理对象）：被代理的对象，即织入advice的目标对象。</li>
+<li>Introduction（引介）：AOP允许我们为目标对象引入新的接口，可以为某个已编写或编译完的类，在执行时期动态加入一些方法或字段。例如：可以用introduction为一个bean实现IsModified接口，以此来简化catching的实现。</li>
+<li>Weave（织入）：将aspect和其他对象连接起来，并创建adviced object的过程。即Advice被应用到Target上的过程。</li>
+<li>Proxy（代理）：被AOP织入通知后，产生的结果类。</li>
+</ul>
+</blockquote>
+<ul>
+<li>注：adviced object指的不是原来的类，而是织入advice后产生的代理类</li>
+<li>advice是在jointpoint上执行的，而pointcut规定了哪些jointpoint可以执行哪些advice。</li>
+</ul>
+<h4 id="14-3-作用"><a href="#14-3-作用" class="headerlink" title="14.3 作用"></a>14.3 作用</h4><blockquote>
+<p>Spring的AOP编程即是通过动态代理类为原始类的方法添加辅助功能。</p>
+</blockquote>
+<h4 id="14-4-环境搭建"><a href="#14-4-环境搭建" class="headerlink" title="14.4 环境搭建"></a>14.4 环境搭建</h4><blockquote>
+<p>引入AOP相关依赖</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aspects<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.9.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>spring-context.xml引入AOP命名空间</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">&quot;http://www.springframework.org/schema/aop&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/beans          </span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/beans/spring-beans.xsd  </span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/aop          </span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/aop/spring-aop.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">        &quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="14-5-开发流程"><a href="#14-5-开发流程" class="headerlink" title="14.5 开发流程"></a>14.5 开发流程</h4><blockquote>
+<p>原始定义</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">saveUser</span><span class="params">(User user)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">saveUser</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        System.out.println(&quot;事务控制&quot;);</span></span><br><span class="line"><span class="comment">//        System.out.println(&quot;日志打印&quot;);</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Save User&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>定义通知类（添加额为功能）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 前置通知类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBeforeAdvice</span> <span class="keyword">implements</span> <span class="title">MethodBeforeAdvice</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">(Method method, Object[] objects, Object o)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">// 额外功能</span></span><br><span class="line">        System.out.println(<span class="string">&quot;事务控制2&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;日志打印2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>定义bean标签</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 目标：原始业务--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.service.UserServiceImpl&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 通知：额外功能 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;before&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.advice.MyBeforeAdvice&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>定义切入点（PointCut）</p>
+<p>形成切面（Aspect）</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!-- 切入点  【修饰符  返回值  包.类  方法名  参数表 】--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;pc_shine&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(* saveUser())&quot;</span>/&gt;</span></span><br><span class="line">     </span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 组装 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">&quot;before&quot;</span> <span class="attr">pointcut-ref</span>=<span class="string">&quot;pc_shine&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="14-6-AOP-小结"><a href="#14-6-AOP-小结" class="headerlink" title="14.6 AOP 小结"></a>14.6 AOP 小结</h4><blockquote>
+<ul>
+<li><p>通过AOP提供的编码流程，更便利的定制切面，更方便的定制了动态代理。</p>
+</li>
+<li><p>进而彻底解决了辅助功能冗余的问题。</p>
+</li>
+<li><p>业务类重职责单一性得到更好保障。</p>
+</li>
+<li><p>辅助功能也有很好的复用性。</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="14-7-通知类【可选】"><a href="#14-7-通知类【可选】" class="headerlink" title="14.7 通知类【可选】"></a>14.7 通知类【可选】</h4><blockquote>
+<p>定义通知类，达到通知效果</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">前置通知：MethodBeforeAdvice</span><br><span class="line">    </span><br><span class="line">后置通知：AfterAdvice</span><br><span class="line">  </span><br><span class="line">后置通知：AfterReturningAdvice  <span class="comment">//有异常不执行，方法会因异常而结束，无返回值</span></span><br><span class="line">    </span><br><span class="line">异常通知：ThrowsAdvice</span><br><span class="line">    </span><br><span class="line">环绕通知：MethodInterceptor</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="14-8-通配切入点"><a href="#14-8-通配切入点" class="headerlink" title="14.8 通配切入点"></a>14.8 通配切入点</h4><blockquote>
+<p>根据表达式通配切入点</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 匹配参数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;pc01&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(* *(com.bl.entity.User))&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 匹配方法名（无参） --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;pc02&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(* saverUser())&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 匹配方法名（任意参数） --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;pc03&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(* saveUser(..))&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 匹配返回值类型 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;pc04&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(java.lang.Integer *(..))&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 匹配类名 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;pc05&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(* com.bl.service.UserServiceImpl.*(..))&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 匹配包名 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;pc06&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(* com.bl.service.*.*(..))&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 匹配包名、以及子包名 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;pc07&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(* com.bl.*.*(..))&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="14-9-JDK和CGLIB选择"><a href="#14-9-JDK和CGLIB选择" class="headerlink" title="14.9 JDK和CGLIB选择"></a>14.9 JDK和CGLIB选择</h4><blockquote>
+<ul>
+<li>spring底层，包含了jdk代理和cglib代理两种代理生成机制</li>
+<li>基本规则是：目标业务类如果有接口则用JDK代理，没有接口则用CGLIB代理</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DefaultAopProxyFactory</span></span>&#123;</span><br><span class="line">    <span class="comment">//该方法中明确定义了 JDK代理和CGLIB代理的选取规则</span></span><br><span class="line">    <span class="comment">//基本规则是：&gt; * 目标业务类如果有接口则用JDK代理，没有接口则用CGLIB代理</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> AopProxy <span class="title">createAopProxy</span><span class="params">()</span></span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="14-10-后处理器"><a href="#14-10-后处理器" class="headerlink" title="14.10 后处理器"></a>14.10 后处理器</h4><blockquote>
+<ul>
+<li>spring中定义了很多后处理器；</li>
+<li>每个bean在创建完成之前，都会有一个后处理过程，即再加工，对bean作出相关改变和调整；</li>
+<li>spring AOP中，就有一个专门的后处理器，负责通过原始业务组件（Service），再加工得到一个代理组件。</li>
+</ul>
+</blockquote>
+<p><img src="/blog/2021/07/17/Spring-AOP-%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B-%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/image-20210716102952677.png" alt="image-20210716102952677"></p>
+<h5 id="14-10-1-后处理器定义"><a href="#14-10-1-后处理器定义" class="headerlink" title="14.10.1 后处理器定义"></a>14.10.1 后处理器定义</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义bean后处理器</span></span><br><span class="line"><span class="comment"> * 作用：在bean的创建之后，进行再加工</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBeanPostProcessor</span> <span class="keyword">implements</span> <span class="title">BeanPostProcessor</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * 在bean的init方法之前执行</span></span><br><span class="line"><span class="comment">      * <span class="doctag">@param</span> bean     原始bean对象</span></span><br><span class="line"><span class="comment">      * <span class="doctag">@param</span> beanName</span></span><br><span class="line"><span class="comment">      * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">      * <span class="doctag">@throws</span> BeansException</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">postProcessBeforeInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;后处理1&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;后处理1:&quot;</span>+bean+<span class="string">&quot;  :&quot;</span>+beanName);</span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * 在bean的init方法之后执行</span></span><br><span class="line"><span class="comment">      * <span class="doctag">@param</span> bean    postProcessAfterInitialization返回的bean</span></span><br><span class="line"><span class="comment">      * <span class="doctag">@param</span> beanName</span></span><br><span class="line"><span class="comment">      * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">      * <span class="doctag">@throws</span> BeansException</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">postProcessAfterInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;后处理2&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;后处理2:&quot;</span>+bean+<span class="string">&quot;  :&quot;</span>+beanName);</span><br><span class="line">        <span class="keyword">return</span> bean;  <span class="comment">//此处返回时  getBean()  最终返回值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="14-10-2-配置后处理器"><a href="#14-10-2-配置后处理器" class="headerlink" title="14.10.2 配置后处理器"></a>14.10.2 配置后处理器</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 后处理器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;com.bl .processor.MyBeanPostProcessor&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="14-10-3-bean生命周期"><a href="#14-10-3-bean生命周期" class="headerlink" title="14.10.3 bean生命周期"></a>14.10.3 bean生命周期</h5><blockquote>
+<p>构造 》 注入属性 满足依赖 》 后处理器前置过程 》 初始化 》 后处理器后置过程 》 返回 》 销毁</p>
+</blockquote>
+<h5 id="14-10-4-动态代理源码（了解）"><a href="#14-10-4-动态代理源码（了解）" class="headerlink" title="14.10.4 动态代理源码（了解）"></a>14.10.4 动态代理源码（了解）</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//AbstractAutoProxyCreator是 AspectJAwareAdvisorAutoProxyCreator的父类</span></span><br><span class="line"><span class="comment">//该后处理器类中的 wrapIfNecessary方法即动态代理生成过程</span></span><br><span class="line">AbstractAutoProxyCreator#postProccessAfterInitialization(Object bean, String beanName)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">this</span>.earlyProxyReferences.contains(cacheKey))&#123;</span><br><span class="line">        <span class="comment">//开始动态定制代理</span></span><br><span class="line">        <span class="keyword">return</span> wrapIfNecessary(bean, beanName, cacheKey);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring DI（依赖注入）</title>
+    <url>/blog/2021/07/17/Spring-DI%EF%BC%88%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%EF%BC%89/</url>
+    <content><![CDATA[<h3 id="十、DI（Dependency-Injection）依赖注入【重点】"><a href="#十、DI（Dependency-Injection）依赖注入【重点】" class="headerlink" title="十、DI（Dependency Injection）依赖注入【重点】"></a>十、DI（Dependency Injection）依赖注入【重点】</h3><h4 id="10-1-概念"><a href="#10-1-概念" class="headerlink" title="10.1 概念"></a>10.1 概念</h4><blockquote>
+<p>再Spring创建对象的同时，为其属性赋值，成为依赖注入。</p>
+</blockquote>
+<h4 id="10-2-Set注入"><a href="#10-2-Set注入" class="headerlink" title="10.2 Set注入"></a>10.2 Set注入</h4><blockquote>
+<p>创建对象时，Spring工厂会通过Set方法为对象的属性赋值。</p>
+</blockquote>
+<h5 id="10-2-1-定义目标Bean类型"><a href="#10-2-1-定义目标Bean类型" class="headerlink" title="10.2.1 定义目标Bean类型"></a>10.2.1 定义目标Bean类型</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> Date bornDate;</span><br><span class="line">    <span class="keyword">private</span> String[] hobbys;</span><br><span class="line">    <span class="keyword">private</span> Set&lt;String&gt; phones;</span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; names;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String,String&gt; countries;</span><br><span class="line">    <span class="keyword">private</span> Properties files;</span><br><span class="line">    <span class="comment">//Getters And Setters</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="10-2-2-基本类型-字符串类型-日期类型"><a href="#10-2-2-基本类型-字符串类型-日期类型" class="headerlink" title="10.2.2 基本类型 + 字符串类型 + 日期类型"></a>10.2.2 基本类型 + 字符串类型 + 日期类型</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Set注入 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.entity.User&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 简单：jdk8种基本数据类型  String  Date --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">value</span>=<span class="string">&quot;10&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;123abc&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;male&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> <span class="attr">value</span>=<span class="string">&quot;19&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;bornDate&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2020/12/12 12:20:30&quot;</span>/&gt;</span><span class="comment">&lt;!--注意格式&quot;/&quot;--&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="10-2-3-容器类型"><a href="#10-2-3-容器类型" class="headerlink" title="10.2.3 容器类型"></a>10.2.3 容器类型</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Set注入 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.entity.User&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 数组 Array --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;hobbys&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>football<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>basketball<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 集合 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- List --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;names&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>tom<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>jack<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Set --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;phones&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>131111111<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>131222222<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Map --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;countries&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">&quot;zh&quot;</span> <span class="attr">value</span>=<span class="string">&quot;china&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">&quot;en&quot;</span> <span class="attr">value</span>=<span class="string">&quot;english&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Properties --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;files&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;url&quot;</span>&gt;</span>jdbc:mysql:xxx<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;username&quot;</span>&gt;</span>root<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="10-2-4-自建类型"><a href="#10-2-4-自建类型" class="headerlink" title="10.2.4 自建类型"></a>10.2.4 自建类型</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 次要bena，被作为属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;addr&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.entity.Address&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;city&quot;</span> <span class="attr">value</span>=<span class="string">&quot;bj&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 主要bean，操作的主体 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.entity.User&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 自建类型 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- address属性引用addr对象 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;address&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;addr&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 次要bean，被作为属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDAO&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.dao.UserDAOImpl&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 主要bean，操作的主体 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.service.UserServiceImpl&quot;</span> <span class="attr">autowire</span>=<span class="string">&quot;byType&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;userDAO&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;userDAO&quot;</span>/&gt;</span><span class="comment">&lt;!-- userDAO 属性引用userDAO对象--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-3-构造注入【了解】"><a href="#10-3-构造注入【了解】" class="headerlink" title="10.3 构造注入【了解】"></a>10.3 构造注入【了解】</h4><blockquote>
+<p>构建对象时，Spring工厂会通过构造方法为对象的属性赋值。</p>
+</blockquote>
+<h5 id="10-3-1-定义目标Bean类型"><a href="#10-3-1-定义目标Bean类型" class="headerlink" title="10.3.1 定义目标Bean类型"></a>10.3.1 定义目标Bean类型</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Constructors</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(Integer id , String name , String sex , Integer age)</span></span>&#123;</span><br><span class="line">        <span class="comment">//System.out.println(&quot;set property&quot;);</span></span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="10-3-2-注入"><a href="#10-3-2-注入" class="headerlink" title="10.3.2 注入"></a>10.3.2 注入</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 构造注入 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;student&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.entity.Student&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span>/&gt;</span><span class="comment">&lt;!-- 除标签名有变化，其他均和Set注入一致 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;milke&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;male&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> <span class="attr">value</span>=<span class="string">&quot;19&quot;</span>/&gt;</span></span><br><span class="line">&lt;/bean &gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-4-自动注入【了解】"><a href="#10-4-自动注入【了解】" class="headerlink" title="10.4 自动注入【了解】"></a>10.4 自动注入【了解】</h4><blockquote>
+<p>不用在配置中 指定为哪个属性赋值，及赋什么值。</p>
+<p>由spring自动根据某个“原则”，在工厂中查找一个bean，为属性注入属性值</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserSerivceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> UserDAO userDAO;</span><br><span class="line">    <span class="comment">//Getters And Setters</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 要工厂生产的对象 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDAO&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.dao.UserDAOImpl&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 为UserServiceImpl中的属性基于类型自动注入值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.service.UserServiceImpl&quot;</span> <span class="attr">autowire</span>=<span class="string">&quot;byType&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDAO&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.dao.UserDAOImpl&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 为UserServiceImpl中的属性基于类型自动注入值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.service.UserServiceImpl&quot;</span> <span class="attr">autowire</span>=<span class="string">&quot;byName&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring Ioc（控制反转）</title>
+    <url>/blog/2021/07/17/Spring-Ioc%EF%BC%88%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%EF%BC%89/</url>
+    <content><![CDATA[<h3 id="九、IoC（Inversion-of-Control）控制反转【重点】"><a href="#九、IoC（Inversion-of-Control）控制反转【重点】" class="headerlink" title="九、IoC（Inversion of Control）控制反转【重点】"></a>九、IoC（Inversion of Control）控制反转【重点】</h3><blockquote>
+<p>Inverse of Controll：控制反转</p>
+<p>反转了依赖关系的满足方式，由之前的自己创建依赖对象，变为由工厂推送。（便主动为被动，及反转）</p>
+<p>解决了具有依赖关系的组件之间的强耦合，是的项目形态更加稳健</p>
+</blockquote>
+<h4 id="9-1-项目中强耦合问题"><a href="#9-1-项目中强耦合问题" class="headerlink" title="9.1 项目中强耦合问题"></a>9.1 项目中强耦合问题</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> UserDAOImpl implements UserDAO&#123;....&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span></span>&#123;</span><br><span class="line">    <span class="comment">//！！！强耦合了UserDAOImpl！！！，是的UserServiceImpl变得不稳健</span></span><br><span class="line">    <span class="keyword">private</span> UserDAO userDAO = <span class="keyword">new</span> UserDAOImpl();</span><br><span class="line">    <span class="meta">@Overrude</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">queryUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userDAO.queryUser();</span><br><span class="line">    &#125;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-2-解决方案"><a href="#9-2-解决方案" class="headerlink" title="9.2 解决方案"></a>9.2 解决方案</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//不引用任何一个具体的组件（实体类），在需要其他组件的位置预留存取值入口（set/get）</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserSerivceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span></span>&#123;</span><br><span class="line">    <span class="comment">//！！！不再耦合任何DAO实现！！！，消除不稳健因素</span></span><br><span class="line">    <span class="keyword">private</span> UserDAO userDAO;</span><br><span class="line">    <span class="comment">//为userDAO定义set/get，允许userDAO属性接收spring赋值</span></span><br><span class="line">    <span class="comment">//Getters And Setters</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">queryUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userDAO.queryUser();</span><br><span class="line">    &#125;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="comment">&lt;!-- 要工厂生产的对象 --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDAO&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.dao.UserDAOImpl&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- UserServiceImpl组件 --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.service.UserServiceImpl&quot;</span>&gt;</span></span><br><span class="line">     <span class="comment">&lt;!-- userDAO属性赋值， 值是id为useDAO的一个bean</span></span><br><span class="line"><span class="comment">          注入：属性值  依赖关系</span></span><br><span class="line"><span class="comment">          依赖注入</span></span><br><span class="line"><span class="comment">     --&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;userDAO&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;userDAO&quot;</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此时，如果需要跟换其他UserDAO实现类，则UserServiceImpl不用任何改动！</p>
+<p>则此时的UserServiceImpl组件变得更见稳健！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring入门</title>
+    <url>/blog/2021/07/17/Spring%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h3 id="四、自定义工厂"><a href="#四、自定义工厂" class="headerlink" title="四、自定义工厂"></a>四、自定义工厂</h3><h4 id="4-1-配置文件"><a href="#4-1-配置文件" class="headerlink" title="4.1 配置文件"></a>4.1 配置文件</h4><blockquote>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">userDAO</span>=<span class="string">com.bl.dao.UserDAOImpl</span></span><br><span class="line"><span class="attr">userService</span>=<span class="string">com.bl.service.UserServiceImpl</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="4-2-工厂类"><a href="#4-2-工厂类" class="headerlink" title="4.2 工厂类"></a>4.2 工厂类</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自定义工厂</span></span><br><span class="line"><span class="comment">// 1.加载配置文件</span></span><br><span class="line"><span class="comment">// 2.生产配置中记录的对应对象</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyFactory</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyFactory</span><span class="params">(String config)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStream resourceAsStream = MyFactory.class.getResourceAsStream(config);</span><br><span class="line">        <span class="comment">// properties 读取配置文件</span></span><br><span class="line">        properties.load(resourceAsStream);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getBean</span><span class="params">(String name)</span> <span class="keyword">throws</span> ClassNotFoundException, IllegalAccessException, InstantiationException </span>&#123;</span><br><span class="line">        <span class="comment">//1. 通过name，获取对应类路径</span></span><br><span class="line">        String classPath = properties.getProperty(name);</span><br><span class="line">        <span class="comment">// 2. 反射 构建对象</span></span><br><span class="line">        Class claz = Class.forName(classPath);</span><br><span class="line">        <span class="comment">//返回获得对象</span></span><br><span class="line">        <span class="keyword">return</span> claz.newInstance();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="五、构建Maven项目"><a href="#五、构建Maven项目" class="headerlink" title="五、构建Maven项目"></a>五、构建Maven项目</h3><h4 id="5-1-新建项目"><a href="#5-1-新建项目" class="headerlink" title="5.1 新建项目"></a>5.1 新建项目</h4><p><img src="/blog/2021/07/17/Spring%E5%85%A5%E9%97%A8/image-20210714120325897.png" alt="image-20210714120325897"></p>
+<h4 id="5-2-选择Maven目录"><a href="#5-2-选择Maven目录" class="headerlink" title="5.2 选择Maven目录"></a>5.2 选择Maven目录</h4><p><img src="/blog/2021/07/17/Spring%E5%85%A5%E9%97%A8/image-20210714121040539.png" alt="image-20210714121040539"></p>
+<h4 id="5-3-GAV-坐标"><a href="#5-3-GAV-坐标" class="headerlink" title="5.3 GAV 坐标"></a>5.3 GAV 坐标</h4><p><img src="/blog/2021/07/17/Spring%E5%85%A5%E9%97%A8/image-20210714122130372.png" alt="image-20210714122130372"></p>
+<h3 id="六、Spring环境搭建"><a href="#六、Spring环境搭建" class="headerlink" title="六、Spring环境搭建"></a>六、Spring环境搭建</h3><h4 id="6-1-pom-xml中引入Spring依赖"><a href="#6-1-pom-xml中引入Spring依赖" class="headerlink" title="6.1 pom.xml中引入Spring依赖"></a>6.1 pom.xml中引入Spring依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.bl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring01<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- Spring 常用依赖 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 传递性 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.6.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-2-创建Spring配置文件"><a href="#6-2-创建Spring配置文件" class="headerlink" title="6.2 创建Spring配置文件"></a>6.2 创建Spring配置文件</h4><blockquote>
+<p>命名无限制，约定俗成命名有：spring-context.xml、applicationContext.mxl、beans.xml</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    schema： 规范</span></span><br><span class="line"><span class="comment">    xxx.xsd</span></span><br><span class="line"><span class="comment">    xml schema definition</span></span><br><span class="line"><span class="comment"> --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">                           http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="七、Spring工厂编码"><a href="#七、Spring工厂编码" class="headerlink" title="七、Spring工厂编码"></a>七、Spring工厂编码</h3><blockquote>
+<p>定义目标Bean类型</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>spring-context.xml中的<beans> 内部配置bean标签</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置实例（id：“唯一标识” class=“需要被创建的目标对象全限定名”） --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;mc&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.spring.part1.factory.MyClass&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>调用Spring工厂API（ApplicationContext接口）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFactory</span></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 程序中的对象都交由Spring的ApplicationContext工厂进行创建。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">         <span class="comment">//1. 读取配置文件中的所需创建的bean对象，并获得工厂对象</span></span><br><span class="line">         ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;spring-context.xml&quot;</span>);</span><br><span class="line">         <span class="comment">//2. 通过id获取bean对象</span></span><br><span class="line">         MyClass mc = (MyClass) ctx.getBean(<span class="string">&quot;mc&quot;</span>);</span><br><span class="line">         <span class="comment">//3. 使用对象</span></span><br><span class="line">         mc.show();</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="八、依赖与配置文件详解"><a href="#八、依赖与配置文件详解" class="headerlink" title="八、依赖与配置文件详解"></a>八、依赖与配置文件详解</h3><blockquote>
+<p>Spring框架包含多个模块，每个模块各司其职，可结合需求引入相关依赖jar包实现功能。</p>
+</blockquote>
+<h4 id="8-1-Spring依赖关系"><a href="#8-1-Spring依赖关系" class="headerlink" title="8.1 Spring依赖关系"></a>8.1 Spring依赖关系</h4><p><img src="/blog/2021/07/17/Spring%E5%85%A5%E9%97%A8/image-20210714162149453.png" alt="image-20210714162149453"></p>
+<ul>
+<li><strong>注意：Jar包彼此存在依赖，只需要引入最外层的Jar即可由Maven自动将相关依赖Jar引入到项目中。</strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring 基础</title>
+    <url>/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h3 id="十一、Bean细节"><a href="#十一、Bean细节" class="headerlink" title="十一、Bean细节"></a>十一、Bean细节</h3><h4 id="11-1-Bean基本管理"><a href="#11-1-Bean基本管理" class="headerlink" title="11.1 Bean基本管理"></a>11.1 Bean基本管理</h4><h5 id="11-1-1-BeanFactory接口"><a href="#11-1-1-BeanFactory接口" class="headerlink" title="11.1.1 BeanFactory接口"></a>11.1.1 BeanFactory接口</h5><blockquote>
+<p>负责读取Bean定义文件，管理对象的加载、生成；维护Bean对象与Bean对象之间的依赖关系；负责Bean的生命周期。</p>
+</blockquote>
+<p><img src="/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210717162904970.png" alt="image-20210717162904970"></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Boolean containsBean(String)</strong></td>
+<td><strong>测试BeanFactory中是否包含指定名称的Bean</strong></td>
+</tr>
+<tr>
+<td>Object getBean(String)</td>
+<td>根据定义文件中设置的名称，返回相应的Bean实例</td>
+</tr>
+<tr>
+<td>Object getBean(String,Class)</td>
+<td>根据定义文件中设置的名称，返回相应的Bean实例,并转换至指定的类</td>
+</tr>
+<tr>
+<td>Class getType(String  name)</td>
+<td>根据定义文件中设置的名称，返回相应的Bean实例类型</td>
+</tr>
+<tr>
+<td>boolean  isSingleton(String)</td>
+<td>根据定义文件中设置的名称，判断相应的Bean实例是否单实例</td>
+</tr>
+<tr>
+<td>String[] getAliases(String)</td>
+<td>返回Bean所有的别名</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    Resource rs = <span class="keyword">new</span> ClassPathResource(<span class="string">&quot;beans-config.xml&quot;</span>);</span><br><span class="line">    BeanFactory factory = <span class="keyword">new</span> XmlBeanFactory(rs);</span><br><span class="line">    UserDAO userDAO = (UserDAO) factory.getBean(<span class="string">&quot;userDao&quot;</span>);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="11-1-2-ApplicationContext-接口"><a href="#11-1-2-ApplicationContext-接口" class="headerlink" title="11.1.2 ApplicationContext 接口"></a>11.1.2 ApplicationContext 接口</h5><blockquote>
+<p>ApplicationContext是基于BeanFactory建立的，具备其特点之外，还提供一个应用程序所需的更完整的框架功能。</p>
+<ul>
+<li>提供方便地取得资源文件方法；</li>
+<li>提供解析文字消息的方法；</li>
+<li>支持国际化消息</li>
+<li>可以发布事件，对事件感兴趣的Bean可以接收到这些事件</li>
+</ul>
+</blockquote>
+<p><strong>注：Spring的创始者Rod Johnson建议：使用ApplicationContext代替BeanFactory</strong></p>
+<h6 id="11-1-2-1-单独Bean定义文件"><a href="#11-1-2-1-单独Bean定义文件" class="headerlink" title="11.1.2.1 单独Bean定义文件"></a>11.1.2.1 单独Bean定义文件</h6><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;beans-config.xml&quot;</span>);</span><br><span class="line">    UserDAO userDAO = (UserDAO) context.getBean(<span class="string">&quot;userDao&quot;</span>);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="11-1-2-1-多个Bean定义文件"><a href="#11-1-2-1-多个Bean定义文件" class="headerlink" title="11.1.2.1 多个Bean定义文件"></a>11.1.2.1 多个Bean定义文件</h6><blockquote>
+<p>ApplicationContext可以读取多个Bean定义文件，以数组指定Bean定义文件的位置。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="keyword">new</span> String[]&#123;<span class="string">&quot;beans-config.xml&quot;</span>,<span class="string">&quot;beans-config2.xml&quot;</span>&#125;);</span><br><span class="line">    UserDAO userDAO = (UserDAO) context.getBean(<span class="string">&quot;userDao&quot;</span>);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Bean的定义文件种可以使用<import>标签导入多个资源文件，注意其位置</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">                           http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">&quot;beans-config2.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="11-2-控制简单对象的单例、多例模式"><a href="#11-2-控制简单对象的单例、多例模式" class="headerlink" title="11.2 控制简单对象的单例、多例模式"></a>11.2 控制简单对象的单例、多例模式</h4><blockquote>
+<p>配置<bean scope="singleton | prototype"/></p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	singleton（默认）：每次调用工厂，得到的都是同一对象。</span></span><br><span class="line"><span class="comment">	prototype：每次调用工厂，都会创建新的对象。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;mc&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.spring.basic.MyClass&quot;</span> <span class="attr">scope</span>=<span class="string">&quot;singleton&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注意：需要根据场景决定对象的单例、多例模式。</li>
+<li>可以共用：Service、DAO、SqlSessionFactory（或者时所有的工厂）。</li>
+<li>不可共用：Connection、SqlSession、ShoppingCart。</li>
+</ul>
+<h4 id="11-3-FactoryBean创建复杂对象【了解】"><a href="#11-3-FactoryBean创建复杂对象【了解】" class="headerlink" title="11.3 FactoryBean创建复杂对象【了解】"></a>11.3 FactoryBean创建复杂对象【了解】</h4><blockquote>
+<p>作用：让Spring可以创建复杂对象、或则无法直接通过反射创建的对象。</p>
+</blockquote>
+<p><img src="/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210714190823266.png" alt="image-20210714190823266"></p>
+<h5 id="11-3-1-实现FactoryBean-接口"><a href="#11-3-1-实现FactoryBean-接口" class="headerlink" title="11.3.1 实现FactoryBean 接口"></a>11.3.1 实现FactoryBean 接口</h5><p><img src="/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210714192513860.png" alt="image-20210714192513860"></p>
+<ul>
+<li>注意：isSingleton方法的返回值，需根据所创建对象的特点决定返回true/false。</li>
+<li>例如：Connection 不应该被多个用户共享，返回false。</li>
+<li>例如：SqlSessionFactory 重量级资源，不该过多创建，返回true。</li>
+</ul>
+<h5 id="11-3-2-配置spring-context-xml"><a href="#11-3-2-配置spring-context-xml" class="headerlink" title="11.3.2 配置spring-context.xml"></a>11.3.2 配置spring-context.xml</h5><p><img src="/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210715102934202.png" alt="image-20210715102934202"></p>
+<h5 id="11-3-3-特例"><a href="#11-3-3-特例" class="headerlink" title="11.3.3 特例"></a>11.3.3 特例</h5><p><img src="/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210715103538200.png" alt="image-20210715103538200"></p>
+<h3 id="十二、Spring工厂特性"><a href="#十二、Spring工厂特性" class="headerlink" title="十二、Spring工厂特性"></a>十二、Spring工厂特性</h3><h4 id="12-1-饿汉式创建优势"><a href="#12-1-饿汉式创建优势" class="headerlink" title="12.1 饿汉式创建优势"></a>12.1 饿汉式创建优势</h4><blockquote>
+<p>工厂创建之后，会将Spring配置文件中的所有对象都创建完成（饿汉式）。</p>
+<p>提高程序运行效率。避免多次IO，减少对象创建时间。（概念接近连接池，一次性创建好，使用时直接获取。）</p>
+</blockquote>
+<h4 id="12-2-生命周期方法"><a href="#12-2-生命周期方法" class="headerlink" title="12.2 生命周期方法"></a>12.2 生命周期方法</h4><blockquote>
+<ul>
+<li>自定义初始化方法：添加“init-method”属性，Spring则会在创建对象之后，调用此方法。</li>
+<li>自定义销毁方法：添加“destroy-method”属性，Spring则会在销毁对象之前，调用此方法。</li>
+<li>销毁：工厂的close() 方法被调用之后，Spring会毁掉所有已创建的单例对象。</li>
+<li>分类：Singleton对象由Spring容器销毁、Prototype对象由JVM销毁。</li>
+</ul>
+</blockquote>
+<h4 id="12-3-声明周期注解"><a href="#12-3-声明周期注解" class="headerlink" title="12.3 声明周期注解"></a>12.3 声明周期注解</h4><blockquote>
+<p>初始化注解、销毁注解</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"><span class="keyword">import</span> javax.annotation.PreDestroy;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostConstruct</span>   <span class="comment">//初始化</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;init method excuted&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PreDestroy</span>  <span class="comment">//销毁</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;destrou method executed&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="12-4-生命周期阶段"><a href="#12-4-生命周期阶段" class="headerlink" title="12.4 生命周期阶段"></a>12.4 生命周期阶段</h4><blockquote>
+<p>单例bean：singleton</p>
+<p>随工厂启动创建 ==》 构造方法 ==》 set方法（注入值） ==》 init（初始化） ==》 构建完成 ==》 随工厂关闭销毁</p>
+</blockquote>
+<blockquote>
+<p>多例bean：prototype</p>
+<p>被使用时创建 ==》 构造方法 ==》 set方法（注入值） ==》 构建完成 ==》 JVM垃圾回收销毁</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+</search>

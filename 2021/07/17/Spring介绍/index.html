@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<script>
+(function(){
+    if(''){
+        if (prompt('请输入文章密码') !== ''){
+            alert('密码错误！');
+            history.back();
+        }
+    }
+})();
+</script>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/logo.png">
+  <meta name="baidu-site-verification" content="uxl9lr0nrm">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;www.shuibao.ml&quot;,&quot;root&quot;:&quot;&#x2F;blog&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;blog&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;blog&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="一、引言1.1 原生web开发中存在哪些问题？  传统web开发存在硬编码所造成的过度程序耦合（例如：Service中作为属性Dao对象）。 部分Java EE API较为复杂，使用效率低（例如：JDBC开发步骤）。 侵入性强，移植性差（例如：DAO实现的更换，从Connection到SqlSession）。   二、Spring框架2.1 概念  Spring是一个项目管理框架，同时也是一套Ja">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring介绍">
+<meta property="og:url" content="http://www.shuibao.ml/blog/2021/07/17/Spring%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="ligai">
+<meta property="og:description" content="一、引言1.1 原生web开发中存在哪些问题？  传统web开发存在硬编码所造成的过度程序耦合（例如：Service中作为属性Dao对象）。 部分Java EE API较为复杂，使用效率低（例如：JDBC开发步骤）。 侵入性强，移植性差（例如：DAO实现的更换，从Connection到SqlSession）。   二、Spring框架2.1 概念  Spring是一个项目管理框架，同时也是一套Ja">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.shuibao.ml/blog/2021/07/17/Spring%E4%BB%8B%E7%BB%8D/image-20210713131051127.png">
+<meta property="article:published_time" content="2021-07-17T09:27:28.000Z">
+<meta property="article:modified_time" content="2021-07-17T09:31:23.675Z">
+<meta property="article:author" content="baoliang">
+<meta property="article:tag" content="-Spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.shuibao.ml/blog/2021/07/17/Spring%E4%BB%8B%E7%BB%8D/image-20210713131051127.png">
+
+
+<link rel="canonical" href="http://www.shuibao.ml/blog/2021/07/17/Spring%E4%BB%8B%E7%BB%8D/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;www.shuibao.ml&#x2F;blog&#x2F;2021&#x2F;07&#x2F;17&#x2F;Spring%E4%BB%8B%E7%BB%8D&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;07&#x2F;17&#x2F;Spring介绍&#x2F;&quot;,&quot;title&quot;:&quot;Spring介绍&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Spring介绍 | ligai</title><script src="/blog/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/blog/atom.xml" title="ligai" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ligai</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/blog/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section">归档</a></li>
+        <li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section">分类</a></li>
+        <li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section">标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BC%95%E8%A8%80"><span class="nav-text">一、引言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%8E%9F%E7%94%9Fweb%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AD%98%E5%9C%A8%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-text">1.1 原生web开发中存在哪些问题？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Spring%E6%A1%86%E6%9E%B6"><span class="nav-text">二、Spring框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%A6%82%E5%BF%B5"><span class="nav-text">2.1 概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D"><span class="nav-text">2.2 术语介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E8%AE%BF%E9%97%AE%E4%BA%8E%E4%B8%8B%E8%BD%BD"><span class="nav-text">2.3 访问于下载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-text">三、Spring框架的组成</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="baoliang"
+      src="/blog/images/header.jpg">
+  <p class="site-author-name" itemprop="name">baoliang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/BeamBrother" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;BeamBrother" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com.hk/" title="Google → https:&#x2F;&#x2F;www.google.com.hk&#x2F;" rel="noopener" target="_blank">Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.baidu.com/" title="百度 → https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45858458?spm=1018.2226.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45858458?spm&#x3D;1018.2226.3001.5343" rel="noopener" target="_blank">CSDN</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.shuibao.ml/blog/2021/07/17/Spring%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/header.jpg">
+      <meta itemprop="name" content="baoliang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ligai">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spring介绍
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-07-17 17:27:28 / 修改时间：17:31:23" itemprop="dateCreated datePublished" datetime="2021-07-17T17:27:28+08:00">2021-07-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><h4 id="1-1-原生web开发中存在哪些问题？"><a href="#1-1-原生web开发中存在哪些问题？" class="headerlink" title="1.1 原生web开发中存在哪些问题？"></a>1.1 原生web开发中存在哪些问题？</h4><blockquote>
+<ul>
+<li>传统web开发存在硬编码所造成的过度程序耦合（例如：Service中作为属性Dao对象）。</li>
+<li>部分Java EE API较为复杂，使用效率低（例如：JDBC开发步骤）。</li>
+<li>侵入性强，移植性差（例如：DAO实现的更换，从Connection到SqlSession）。</li>
+</ul>
+</blockquote>
+<h3 id="二、Spring框架"><a href="#二、Spring框架" class="headerlink" title="二、Spring框架"></a>二、Spring框架</h3><h4 id="2-1-概念"><a href="#2-1-概念" class="headerlink" title="2.1 概念"></a>2.1 概念</h4><blockquote>
+<ul>
+<li>Spring是一个项目管理框架，同时也是一套Java EE解决方案。</li>
+<li>Spring是从多优秀设计模式的组合（工厂、单例、代理、适配器、观察者、模板、策略）。</li>
+<li>Spring并未替代现有框架产品，而是将从多框架进行有机整合，简化企业级开发，俗称“胶水框架”。</li>
+</ul>
+</blockquote>
+<h4 id="2-2-术语介绍"><a href="#2-2-术语介绍" class="headerlink" title="2.2 术语介绍"></a>2.2 术语介绍</h4><blockquote>
+<ul>
+<li>轻量级（Lightweight）：Spring 核心包容量不到1MB的大小，可以在很多小型设备中使用Spring</li>
+<li>非侵入性(No intrusive)：增强应用程序组件的可重用性，减少对框架的依赖</li>
+<li>容器（Container）：根据配置文件自动生成对象及属性等，不用编写任何代码来产生对象</li>
+<li>Inversion of Control(IoC)与Dependency Injection（DI）：IoC目的就是依赖于抽象；对象与对象之间的关系由容器根据配置文件将依赖关系注入到指定的对象中</li>
+<li>AOP(Aspect-oriented programming)：基于代理及拦截器的机制，与Spring IoC 结合，采用运行时Weaving方式在Spring框架的应用程序中使用各种声明式系统级服务。</li>
+<li>持久层（Persistent）：Spring提供DAO、编程事务与声明式事务，对于ORM工具（Hibernate、MyBatis）的整合及使用上简化。</li>
+</ul>
+</blockquote>
+<h4 id="2-3-访问于下载"><a href="#2-3-访问于下载" class="headerlink" title="2.3 访问于下载"></a>2.3 访问于下载</h4><blockquote>
+<p>官方网站：<a target="_blank" rel="noopener" href="https://spring.io/">https://spring.io/</a></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://repo.spring.io/release.org/springframework/spring/">https://repo.spring.io/release.org/springframework/spring/</a></p>
+</blockquote>
+<h3 id="三、Spring框架的组成"><a href="#三、Spring框架的组成" class="headerlink" title="三、Spring框架的组成"></a>三、Spring框架的组成</h3><blockquote>
+<p>Spring架构有诸多模块组成，可分为</p>
+<ul>
+<li>核心技术：<strong>依赖注入</strong>，事件，资源，i18n，验证，数据绑定，类型转换，SpEL，<strong>AOP</strong>。</li>
+<li>测试：模拟对象，TestConnection框架，Spring MVC测试，WebTestClient。</li>
+<li>数据访问：<strong>事务</strong>，DAO支持，JDBC，ORM，封送XML。</li>
+<li>Spring MVC 和 Spring WebFlux Web框架。</li>
+<li>集成：远程处理，JMS，JCA，JMX，电子邮件，任务，调度，缓存。</li>
+<li>语言：Kotlin，Groovy，动态语言。</li>
+</ul>
+</blockquote>
+<p><img src="/blog/2021/07/17/Spring%E4%BB%8B%E7%BB%8D/image-20210713131051127.png" alt="o"></p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>ArtifactId</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>org.springframework</td>
+<td><strong>spring-beans</strong></td>
+<td><strong>Beans支持，包含Groovy</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-aop</strong></td>
+<td><strong>基于代理的AOP支持</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-aspects</strong></td>
+<td><strong>基于AspectJ 的切面</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-context</strong></td>
+<td><strong>应用剩下文运行时，包括调度和远程抽象</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-context-support</strong></td>
+<td><strong>支持将常见的第三方类库集成到Spring应用上下文</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-core</strong></td>
+<td><strong>其他模块所依赖的核心模块</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-expression</strong></td>
+<td><strong>Spring表达式语言，SpEL</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-instrument</td>
+<td>JVM引导的仪表（检测器）代理</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-instrument-tomcat</td>
+<td>Tomcat的仪表（检测器）代理</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-jdbc</td>
+<td>支持包括数据源设置和JDBC访问支持</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-jms</td>
+<td>支持包括发送/接收JMS消息的助手类</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-messaging</td>
+<td>对消息架构和协议的支持</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-orm</td>
+<td>对象/关系映射，包括JPA和Hibernate的支持</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-oxm</td>
+<td>对象/XML 映射（Object/XML Mapping，OXM）</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-test</strong></td>
+<td><strong>单元测试和集成测试支持组件</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-tx</strong></td>
+<td><strong>事务基础组件，包括对DAO的支持及JCA的集成</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-web</strong></td>
+<td><strong>web支持包，包括客户端及web远程调用</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-webmvc</strong></td>
+<td><strong>REST web服务及 web应用的MVC实现</strong></td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-webmvc-portlet</td>
+<td>用户Portlet环境的MVC实现</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td>spring-websocket</td>
+<td>WebSocket 和 Sock JS 实现，包括对STOMP的支持</td>
+</tr>
+<tr>
+<td>org.springframework</td>
+<td><strong>spring-jcl</strong></td>
+<td><strong>Jakarta Commons Logging 日志系统</strong></td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/blog/atom.xml">
+          <span class="icon">
+            <i class=""></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/Spring/" rel="tag"># -Spring</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2021/06/24/IDEA-2020-2-%E6%97%A0%E6%B3%95%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/" rel="prev" title="IDEA 2020.2 无法创建web项目（创建web项目、Spring MVC等等步骤）">
+                  <i class="fa fa-chevron-left"></i> IDEA 2020.2 无法创建web项目（创建web项目、Spring MVC等等步骤）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2021/07/17/Spring%E5%85%A5%E9%97%A8/" rel="next" title="Spring入门">
+                  Spring入门 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/blog/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baoliang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+<script src="/blog/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

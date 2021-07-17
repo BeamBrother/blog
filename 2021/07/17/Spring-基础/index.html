@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<script>
+(function(){
+    if(''){
+        if (prompt('请输入文章密码') !== ''){
+            alert('密码错误！');
+            history.back();
+        }
+    }
+})();
+</script>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/logo.png">
+  <meta name="baidu-site-verification" content="uxl9lr0nrm">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;www.shuibao.ml&quot;,&quot;root&quot;:&quot;&#x2F;blog&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;blog&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;blog&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="十一、Bean细节11.1 Bean基本管理11.1.1 BeanFactory接口 负责读取Bean定义文件，管理对象的加载、生成；维护Bean对象与Bean对象之间的依赖关系；负责Bean的生命周期。      方法 描述    Boolean containsBean(String) 测试BeanFactory中是否包含指定名称的Bean   Object getBean(String) 根">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring 基础">
+<meta property="og:url" content="http://www.shuibao.ml/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="ligai">
+<meta property="og:description" content="十一、Bean细节11.1 Bean基本管理11.1.1 BeanFactory接口 负责读取Bean定义文件，管理对象的加载、生成；维护Bean对象与Bean对象之间的依赖关系；负责Bean的生命周期。      方法 描述    Boolean containsBean(String) 测试BeanFactory中是否包含指定名称的Bean   Object getBean(String) 根">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.shuibao.ml/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210717162904970.png">
+<meta property="og:image" content="http://www.shuibao.ml/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210714190823266.png">
+<meta property="og:image" content="http://www.shuibao.ml/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210714192513860.png">
+<meta property="og:image" content="http://www.shuibao.ml/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210715102934202.png">
+<meta property="og:image" content="http://www.shuibao.ml/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210715103538200.png">
+<meta property="article:published_time" content="2021-07-17T09:43:13.000Z">
+<meta property="article:modified_time" content="2021-07-17T09:57:03.595Z">
+<meta property="article:author" content="baoliang">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.shuibao.ml/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210717162904970.png">
+
+
+<link rel="canonical" href="http://www.shuibao.ml/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;www.shuibao.ml&#x2F;blog&#x2F;2021&#x2F;07&#x2F;17&#x2F;Spring-%E5%9F%BA%E7%A1%80&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;07&#x2F;17&#x2F;Spring-基础&#x2F;&quot;,&quot;title&quot;:&quot;Spring 基础&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Spring 基础 | ligai</title><script src="/blog/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/blog/atom.xml" title="ligai" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ligai</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/blog/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section">归档</a></li>
+        <li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section">分类</a></li>
+        <li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section">标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81Bean%E7%BB%86%E8%8A%82"><span class="nav-text">十一、Bean细节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-1-Bean%E5%9F%BA%E6%9C%AC%E7%AE%A1%E7%90%86"><span class="nav-text">11.1 Bean基本管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#11-1-1-BeanFactory%E6%8E%A5%E5%8F%A3"><span class="nav-text">11.1.1 BeanFactory接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-1-2-ApplicationContext-%E6%8E%A5%E5%8F%A3"><span class="nav-text">11.1.2 ApplicationContext 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#11-1-2-1-%E5%8D%95%E7%8B%ACBean%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6"><span class="nav-text">11.1.2.1 单独Bean定义文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-1-2-1-%E5%A4%9A%E4%B8%AABean%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6"><span class="nav-text">11.1.2.1 多个Bean定义文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-2-%E6%8E%A7%E5%88%B6%E7%AE%80%E5%8D%95%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8D%95%E4%BE%8B%E3%80%81%E5%A4%9A%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-text">11.2 控制简单对象的单例、多例模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3-FactoryBean%E5%88%9B%E5%BB%BA%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E3%80%90%E4%BA%86%E8%A7%A3%E3%80%91"><span class="nav-text">11.3 FactoryBean创建复杂对象【了解】</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#11-3-1-%E5%AE%9E%E7%8E%B0FactoryBean-%E6%8E%A5%E5%8F%A3"><span class="nav-text">11.3.1 实现FactoryBean 接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-3-2-%E9%85%8D%E7%BD%AEspring-context-xml"><span class="nav-text">11.3.2 配置spring-context.xml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-3-3-%E7%89%B9%E4%BE%8B"><span class="nav-text">11.3.3 特例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81Spring%E5%B7%A5%E5%8E%82%E7%89%B9%E6%80%A7"><span class="nav-text">十二、Spring工厂特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#12-1-%E9%A5%BF%E6%B1%89%E5%BC%8F%E5%88%9B%E5%BB%BA%E4%BC%98%E5%8A%BF"><span class="nav-text">12.1 饿汉式创建优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-2-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%96%B9%E6%B3%95"><span class="nav-text">12.2 生命周期方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-3-%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F%E6%B3%A8%E8%A7%A3"><span class="nav-text">12.3 声明周期注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-4-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%98%B6%E6%AE%B5"><span class="nav-text">12.4 生命周期阶段</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="baoliang"
+      src="/blog/images/header.jpg">
+  <p class="site-author-name" itemprop="name">baoliang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/BeamBrother" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;BeamBrother" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com.hk/" title="Google → https:&#x2F;&#x2F;www.google.com.hk&#x2F;" rel="noopener" target="_blank">Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.baidu.com/" title="百度 → https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45858458?spm=1018.2226.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45858458?spm&#x3D;1018.2226.3001.5343" rel="noopener" target="_blank">CSDN</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.shuibao.ml/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/header.jpg">
+      <meta itemprop="name" content="baoliang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ligai">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spring 基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-07-17 17:43:13 / 修改时间：17:57:03" itemprop="dateCreated datePublished" datetime="2021-07-17T17:43:13+08:00">2021-07-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="十一、Bean细节"><a href="#十一、Bean细节" class="headerlink" title="十一、Bean细节"></a>十一、Bean细节</h3><h4 id="11-1-Bean基本管理"><a href="#11-1-Bean基本管理" class="headerlink" title="11.1 Bean基本管理"></a>11.1 Bean基本管理</h4><h5 id="11-1-1-BeanFactory接口"><a href="#11-1-1-BeanFactory接口" class="headerlink" title="11.1.1 BeanFactory接口"></a>11.1.1 BeanFactory接口</h5><blockquote>
+<p>负责读取Bean定义文件，管理对象的加载、生成；维护Bean对象与Bean对象之间的依赖关系；负责Bean的生命周期。</p>
+</blockquote>
+<p><img src="/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210717162904970.png" alt="image-20210717162904970"></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Boolean containsBean(String)</strong></td>
+<td><strong>测试BeanFactory中是否包含指定名称的Bean</strong></td>
+</tr>
+<tr>
+<td>Object getBean(String)</td>
+<td>根据定义文件中设置的名称，返回相应的Bean实例</td>
+</tr>
+<tr>
+<td>Object getBean(String,Class)</td>
+<td>根据定义文件中设置的名称，返回相应的Bean实例,并转换至指定的类</td>
+</tr>
+<tr>
+<td>Class getType(String  name)</td>
+<td>根据定义文件中设置的名称，返回相应的Bean实例类型</td>
+</tr>
+<tr>
+<td>boolean  isSingleton(String)</td>
+<td>根据定义文件中设置的名称，判断相应的Bean实例是否单实例</td>
+</tr>
+<tr>
+<td>String[] getAliases(String)</td>
+<td>返回Bean所有的别名</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    Resource rs = <span class="keyword">new</span> ClassPathResource(<span class="string">&quot;beans-config.xml&quot;</span>);</span><br><span class="line">    BeanFactory factory = <span class="keyword">new</span> XmlBeanFactory(rs);</span><br><span class="line">    UserDAO userDAO = (UserDAO) factory.getBean(<span class="string">&quot;userDao&quot;</span>);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="11-1-2-ApplicationContext-接口"><a href="#11-1-2-ApplicationContext-接口" class="headerlink" title="11.1.2 ApplicationContext 接口"></a>11.1.2 ApplicationContext 接口</h5><blockquote>
+<p>ApplicationContext是基于BeanFactory建立的，具备其特点之外，还提供一个应用程序所需的更完整的框架功能。</p>
+<ul>
+<li>提供方便地取得资源文件方法；</li>
+<li>提供解析文字消息的方法；</li>
+<li>支持国际化消息</li>
+<li>可以发布事件，对事件感兴趣的Bean可以接收到这些事件</li>
+</ul>
+</blockquote>
+<p><strong>注：Spring的创始者Rod Johnson建议：使用ApplicationContext代替BeanFactory</strong></p>
+<h6 id="11-1-2-1-单独Bean定义文件"><a href="#11-1-2-1-单独Bean定义文件" class="headerlink" title="11.1.2.1 单独Bean定义文件"></a>11.1.2.1 单独Bean定义文件</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;beans-config.xml&quot;</span>);</span><br><span class="line">    UserDAO userDAO = (UserDAO) context.getBean(<span class="string">&quot;userDao&quot;</span>);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="11-1-2-1-多个Bean定义文件"><a href="#11-1-2-1-多个Bean定义文件" class="headerlink" title="11.1.2.1 多个Bean定义文件"></a>11.1.2.1 多个Bean定义文件</h6><blockquote>
+<p>ApplicationContext可以读取多个Bean定义文件，以数组指定Bean定义文件的位置。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="keyword">new</span> String[]&#123;<span class="string">&quot;beans-config.xml&quot;</span>,<span class="string">&quot;beans-config2.xml&quot;</span>&#125;);</span><br><span class="line">    UserDAO userDAO = (UserDAO) context.getBean(<span class="string">&quot;userDao&quot;</span>);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Bean的定义文件种可以使用<import>标签导入多个资源文件，注意其位置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">                           http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">&quot;beans-config2.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="11-2-控制简单对象的单例、多例模式"><a href="#11-2-控制简单对象的单例、多例模式" class="headerlink" title="11.2 控制简单对象的单例、多例模式"></a>11.2 控制简单对象的单例、多例模式</h4><blockquote>
+<p>配置<bean scope="singleton | prototype"/></p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	singleton（默认）：每次调用工厂，得到的都是同一对象。</span></span><br><span class="line"><span class="comment">	prototype：每次调用工厂，都会创建新的对象。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;mc&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.bl.spring.basic.MyClass&quot;</span> <span class="attr">scope</span>=<span class="string">&quot;singleton&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注意：需要根据场景决定对象的单例、多例模式。</li>
+<li>可以共用：Service、DAO、SqlSessionFactory（或者时所有的工厂）。</li>
+<li>不可共用：Connection、SqlSession、ShoppingCart。</li>
+</ul>
+<h4 id="11-3-FactoryBean创建复杂对象【了解】"><a href="#11-3-FactoryBean创建复杂对象【了解】" class="headerlink" title="11.3 FactoryBean创建复杂对象【了解】"></a>11.3 FactoryBean创建复杂对象【了解】</h4><blockquote>
+<p>作用：让Spring可以创建复杂对象、或则无法直接通过反射创建的对象。</p>
+</blockquote>
+<p><img src="/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210714190823266.png" alt="image-20210714190823266"></p>
+<h5 id="11-3-1-实现FactoryBean-接口"><a href="#11-3-1-实现FactoryBean-接口" class="headerlink" title="11.3.1 实现FactoryBean 接口"></a>11.3.1 实现FactoryBean 接口</h5><p><img src="/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210714192513860.png" alt="image-20210714192513860"></p>
+<ul>
+<li>注意：isSingleton方法的返回值，需根据所创建对象的特点决定返回true/false。</li>
+<li>例如：Connection 不应该被多个用户共享，返回false。</li>
+<li>例如：SqlSessionFactory 重量级资源，不该过多创建，返回true。</li>
+</ul>
+<h5 id="11-3-2-配置spring-context-xml"><a href="#11-3-2-配置spring-context-xml" class="headerlink" title="11.3.2 配置spring-context.xml"></a>11.3.2 配置spring-context.xml</h5><p><img src="/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210715102934202.png" alt="image-20210715102934202"></p>
+<h5 id="11-3-3-特例"><a href="#11-3-3-特例" class="headerlink" title="11.3.3 特例"></a>11.3.3 特例</h5><p><img src="/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/image-20210715103538200.png" alt="image-20210715103538200"></p>
+<h3 id="十二、Spring工厂特性"><a href="#十二、Spring工厂特性" class="headerlink" title="十二、Spring工厂特性"></a>十二、Spring工厂特性</h3><h4 id="12-1-饿汉式创建优势"><a href="#12-1-饿汉式创建优势" class="headerlink" title="12.1 饿汉式创建优势"></a>12.1 饿汉式创建优势</h4><blockquote>
+<p>工厂创建之后，会将Spring配置文件中的所有对象都创建完成（饿汉式）。</p>
+<p>提高程序运行效率。避免多次IO，减少对象创建时间。（概念接近连接池，一次性创建好，使用时直接获取。）</p>
+</blockquote>
+<h4 id="12-2-生命周期方法"><a href="#12-2-生命周期方法" class="headerlink" title="12.2 生命周期方法"></a>12.2 生命周期方法</h4><blockquote>
+<ul>
+<li>自定义初始化方法：添加“init-method”属性，Spring则会在创建对象之后，调用此方法。</li>
+<li>自定义销毁方法：添加“destroy-method”属性，Spring则会在销毁对象之前，调用此方法。</li>
+<li>销毁：工厂的close() 方法被调用之后，Spring会毁掉所有已创建的单例对象。</li>
+<li>分类：Singleton对象由Spring容器销毁、Prototype对象由JVM销毁。</li>
+</ul>
+</blockquote>
+<h4 id="12-3-声明周期注解"><a href="#12-3-声明周期注解" class="headerlink" title="12.3 声明周期注解"></a>12.3 声明周期注解</h4><blockquote>
+<p>初始化注解、销毁注解</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"><span class="keyword">import</span> javax.annotation.PreDestroy;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostConstruct</span>   <span class="comment">//初始化</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;init method excuted&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PreDestroy</span>  <span class="comment">//销毁</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;destrou method executed&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="12-4-生命周期阶段"><a href="#12-4-生命周期阶段" class="headerlink" title="12.4 生命周期阶段"></a>12.4 生命周期阶段</h4><blockquote>
+<p>单例bean：singleton</p>
+<p>随工厂启动创建 ==》 构造方法 ==》 set方法（注入值） ==》 init（初始化） ==》 构建完成 ==》 随工厂关闭销毁</p>
+</blockquote>
+<blockquote>
+<p>多例bean：prototype</p>
+<p>被使用时创建 ==》 构造方法 ==》 set方法（注入值） ==》 构建完成 ==》 JVM垃圾回收销毁</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/blog/atom.xml">
+          <span class="icon">
+            <i class=""></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/Spring/" rel="tag"># Spring</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2021/07/17/Spring-DI%EF%BC%88%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%EF%BC%89/" rel="prev" title="Spring DI（依赖注入）">
+                  <i class="fa fa-chevron-left"></i> Spring DI（依赖注入）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2021/07/17/Spring-AOP-%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B-%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/" rel="next" title="Spring AOP(面向切面编程)【重点】">
+                  Spring AOP(面向切面编程)【重点】 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/blog/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baoliang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+<script src="/blog/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

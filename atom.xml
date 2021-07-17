@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ligai</title>
+  
+  
+  <link href="http://www.shuibao.ml/blog/atom.xml" rel="self"/>
+  
+  <link href="http://www.shuibao.ml/blog/"/>
+  <updated>2021-07-17T09:57:02.232Z</updated>
+  <id>http://www.shuibao.ml/blog/</id>
+  
+  <author>
+    <name>baoliang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring AOP(面向切面编程)【重点】</title>
+    <link href="http://www.shuibao.ml/blog/2021/07/17/Spring-AOP-%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B-%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/"/>
+    <id>http://www.shuibao.ml/blog/2021/07/17/Spring-AOP-%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B-%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/</id>
+    <published>2021-07-17T09:46:28.000Z</published>
+    <updated>2021-07-17T09:57:02.232Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;十三、代理设计模式&quot;&gt;&lt;a href=&quot;#十三、代理设计模式&quot; class=&quot;headerlink&quot; title=&quot;十三、代理设计模式&quot;&gt;&lt;/a&gt;十三、代理设计模式&lt;/h3&gt;&lt;h4 id=&quot;13-1-概念&quot;&gt;&lt;a href=&quot;#13-1-概念&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://www.shuibao.ml/blog/categories/Java/"/>
+    
+    
+    <category term="Spring" scheme="http://www.shuibao.ml/blog/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring 基础</title>
+    <link href="http://www.shuibao.ml/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/"/>
+    <id>http://www.shuibao.ml/blog/2021/07/17/Spring-%E5%9F%BA%E7%A1%80/</id>
+    <published>2021-07-17T09:43:13.000Z</published>
+    <updated>2021-07-17T09:57:03.595Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;十一、Bean细节&quot;&gt;&lt;a href=&quot;#十一、Bean细节&quot; class=&quot;headerlink&quot; title=&quot;十一、Bean细节&quot;&gt;&lt;/a&gt;十一、Bean细节&lt;/h3&gt;&lt;h4 id=&quot;11-1-Bean基本管理&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://www.shuibao.ml/blog/categories/Java/"/>
+    
+    
+    <category term="Spring" scheme="http://www.shuibao.ml/blog/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring DI（依赖注入）</title>
+    <link href="http://www.shuibao.ml/blog/2021/07/17/Spring-DI%EF%BC%88%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%EF%BC%89/"/>
+    <id>http://www.shuibao.ml/blog/2021/07/17/Spring-DI%EF%BC%88%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%EF%BC%89/</id>
+    <published>2021-07-17T09:40:50.000Z</published>
+    <updated>2021-07-17T09:57:05.529Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;十、DI（Dependency-Injection）依赖注入【重点】&quot;&gt;&lt;a href=&quot;#十、DI（Dependency-Injection）依赖注入【重点】&quot; class=&quot;headerlink&quot; title=&quot;十、DI（Dependency</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://www.shuibao.ml/blog/categories/Java/"/>
+    
+    
+    <category term="Spring" scheme="http://www.shuibao.ml/blog/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Ioc（控制反转）</title>
+    <link href="http://www.shuibao.ml/blog/2021/07/17/Spring-Ioc%EF%BC%88%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%EF%BC%89/"/>
+    <id>http://www.shuibao.ml/blog/2021/07/17/Spring-Ioc%EF%BC%88%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%EF%BC%89/</id>
+    <published>2021-07-17T09:39:02.000Z</published>
+    <updated>2021-07-17T09:57:06.675Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;九、IoC（Inversion-of-Control）控制反转【重点】&quot;&gt;&lt;a href=&quot;#九、IoC（Inversion-of-Control）控制反转【重点】&quot; class=&quot;headerlink&quot; title=&quot;九、IoC（Inversion of</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://www.shuibao.ml/blog/categories/Java/"/>
+    
+    
+    <category term="Spring" scheme="http://www.shuibao.ml/blog/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring入门</title>
+    <link href="http://www.shuibao.ml/blog/2021/07/17/Spring%E5%85%A5%E9%97%A8/"/>
+    <id>http://www.shuibao.ml/blog/2021/07/17/Spring%E5%85%A5%E9%97%A8/</id>
+    <published>2021-07-17T09:35:16.000Z</published>
+    <updated>2021-07-17T09:38:32.483Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;四、自定义工厂&quot;&gt;&lt;a href=&quot;#四、自定义工厂&quot; class=&quot;headerlink&quot; title=&quot;四、自定义工厂&quot;&gt;&lt;/a&gt;四、自定义工厂&lt;/h3&gt;&lt;h4 id=&quot;4-1-配置文件&quot;&gt;&lt;a href=&quot;#4-1-配置文件&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://www.shuibao.ml/blog/categories/Java/"/>
+    
+    
+    <category term="Spring" scheme="http://www.shuibao.ml/blog/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring介绍</title>
+    <link href="http://www.shuibao.ml/blog/2021/07/17/Spring%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://www.shuibao.ml/blog/2021/07/17/Spring%E4%BB%8B%E7%BB%8D/</id>
+    <published>2021-07-17T09:27:28.000Z</published>
+    <updated>2021-07-17T09:31:23.675Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、引言&quot;&gt;&lt;a href=&quot;#一、引言&quot; class=&quot;headerlink&quot; title=&quot;一、引言&quot;&gt;&lt;/a&gt;一、引言&lt;/h3&gt;&lt;h4 id=&quot;1-1-原生web开发中存在哪些问题？&quot;&gt;&lt;a href=&quot;#1-1-原生web开发中存在哪些问题？&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://www.shuibao.ml/blog/categories/Java/"/>
+    
+    
+    <category term="-Spring" scheme="http://www.shuibao.ml/blog/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IDEA 2020.2 无法创建web项目（创建web项目、Spring MVC等等步骤）</title>
+    <link href="http://www.shuibao.ml/blog/2021/06/24/IDEA-2020-2-%E6%97%A0%E6%B3%95%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/"/>
+    <id>http://www.shuibao.ml/blog/2021/06/24/IDEA-2020-2-%E6%97%A0%E6%B3%95%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/</id>
+    <published>2021-06-24T15:50:56.000Z</published>
+    <updated>2021-07-17T09:57:00.604Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;步骤如下&quot;&gt;&lt;a href=&quot;#步骤如下&quot; class=&quot;headerlink&quot; title=&quot;步骤如下&quot;&gt;&lt;/a&gt;步骤如下&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;按往常一样创建Java项目&lt;/strong&gt;&lt;br&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="JavaSE" scheme="http://www.shuibao.ml/blog/tags/JavaSE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Maven中央仓库下载包太慢？实施阿里云吧！修改本地仓库的位置，极其简单</title>
+    <link href="http://www.shuibao.ml/blog/2021/06/24/Maven%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93%E4%B8%8B%E8%BD%BD%E5%8C%85%E5%A4%AA%E6%85%A2%EF%BC%9F%E5%AE%9E%E6%96%BD%E9%98%BF%E9%87%8C%E4%BA%91%E5%90%A7%EF%BC%81%E4%BF%AE%E6%94%B9%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%8C%E6%9E%81%E5%85%B6%E7%AE%80%E5%8D%95/"/>
+    <id>http://www.shuibao.ml/blog/2021/06/24/Maven%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93%E4%B8%8B%E8%BD%BD%E5%8C%85%E5%A4%AA%E6%85%A2%EF%BC%9F%E5%AE%9E%E6%96%BD%E9%98%BF%E9%87%8C%E4%BA%91%E5%90%A7%EF%BC%81%E4%BF%AE%E6%94%B9%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%8C%E6%9E%81%E5%85%B6%E7%AE%80%E5%8D%95/</id>
+    <published>2021-06-24T15:48:39.000Z</published>
+    <updated>2021-07-17T09:56:55.989Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;Maven对应的版本与jdk设置&quot;&gt;&lt;a href=&quot;#Maven对应的版本与jdk设置&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Maven" scheme="http://www.shuibao.ml/blog/tags/Maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决Tomcat控制台中文乱码</title>
+    <link href="http://www.shuibao.ml/blog/2021/06/24/%E8%A7%A3%E5%86%B3Tomcat%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/"/>
+    <id>http://www.shuibao.ml/blog/2021/06/24/%E8%A7%A3%E5%86%B3Tomcat%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</id>
+    <published>2021-06-24T15:47:06.000Z</published>
+    <updated>2021-07-17T09:57:13.084Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h6 id=&quot;安装Tomcat&quot;&gt;&lt;a href=&quot;#安装Tomcat&quot; class=&quot;headerlink&quot; title=&quot;安装Tomcat&quot;&gt;&lt;/a&gt;安装Tomcat&lt;/h6&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Server" scheme="http://www.shuibao.ml/blog/tags/Server/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用Nexus创建私服</title>
+    <link href="http://www.shuibao.ml/blog/2021/06/24/%E7%94%A8Nexus%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%8D/"/>
+    <id>http://www.shuibao.ml/blog/2021/06/24/%E7%94%A8Nexus%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%8D/</id>
+    <published>2021-06-24T15:45:21.000Z</published>
+    <updated>2021-07-17T09:57:12.081Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;下载Nexus&quot;&gt;&lt;a href=&quot;#下载Nexus&quot; class=&quot;headerlink&quot; title=&quot;下载Nexus&quot;&gt;&lt;/a&gt;下载Nexus&lt;/h4&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Maven" scheme="http://www.shuibao.ml/blog/tags/Maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JUnit之EclEmma覆盖率工具（eclipse）</title>
+    <link href="http://www.shuibao.ml/blog/2021/06/24/JUnit%E4%B9%8BEclEmma%E8%A6%86%E7%9B%96%E7%8E%87%E5%B7%A5%E5%85%B7%EF%BC%88eclipse%EF%BC%89/"/>
+    <id>http://www.shuibao.ml/blog/2021/06/24/JUnit%E4%B9%8BEclEmma%E8%A6%86%E7%9B%96%E7%8E%87%E5%B7%A5%E5%85%B7%EF%BC%88eclipse%EF%BC%89/</id>
+    <published>2021-06-24T15:43:35.000Z</published>
+    <updated>2021-07-17T09:56:58.481Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;EclEmma的多种安装方法&quot;&gt;&lt;a href=&quot;#EclEmma的多种安装方法&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Test" scheme="http://www.shuibao.ml/blog/tags/Test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构与算法8</title>
+    <link href="http://www.shuibao.ml/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%958/"/>
+    <id>http://www.shuibao.ml/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%958/</id>
+    <published>2021-06-24T15:40:36.000Z</published>
+    <updated>2021-07-17T09:57:11.077Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h5 id=&quot;一、二叉树的定义&quot;&gt;&lt;a href=&quot;#一、二叉树的定义&quot; class=&quot;headerlink&quot; title=&quot;一、二叉树的定义&quot;&gt;&lt;/a&gt;一、二叉树的定义&lt;/h5&gt;&lt;blockquote&gt;
+&lt;p&gt;二叉树（binary</summary>
+        
+      
+    
+    
+    
+    
+    <category term="数据结构与算法" scheme="http://www.shuibao.ml/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构与算法1</title>
+    <link href="http://www.shuibao.ml/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%951/"/>
+    <id>http://www.shuibao.ml/blog/2021/06/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%951/</id>
+    <published>2021-06-24T15:38:51.000Z</published>
+    <updated>2021-07-17T09:57:09.795Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;基本知识：&quot;&gt;&lt;a href=&quot;#基本知识：&quot; class=&quot;headerlink&quot; title=&quot;基本知识：&quot;&gt;&lt;/a&gt;基本知识：&lt;/h4&gt;&lt;h5 id=&quot;抽象数据类型&quot;&gt;&lt;a href=&quot;#抽象数据类型&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="数据结构与算法" scheme="http://www.shuibao.ml/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二叉树反转</title>
+    <link href="http://www.shuibao.ml/blog/2021/05/12/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%8D%E8%BD%AC/"/>
+    <id>http://www.shuibao.ml/blog/2021/05/12/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%8D%E8%BD%AC/</id>
+    <published>2021-05-12T14:50:58.000Z</published>
+    <updated>2021-07-17T09:56:53.883Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;二叉树反转常被拿来做面试题，所以掌握它是一件必须的事。&lt;br&gt;下图是二叉树的反转，看起来就像是镜像一样。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="数据结构与算法" scheme="http://www.shuibao.ml/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+</feed>
